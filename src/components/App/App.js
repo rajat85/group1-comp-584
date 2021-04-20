@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Dashboard from '../Dashboard/Dashboard';
 import Login from '../Login/Login';
 import Preferences from '../Preferences/Preferences';
@@ -17,6 +17,12 @@ function App() {
     <div className="wrapper">
       <h1>Application</h1>
       <BrowserRouter>
+        <nav>
+          <ul>
+            <li><Link to="/dashboard">Home</Link></li>
+            <li><Link to="/preferences">Preferences</Link></li>
+          </ul>
+        </nav>
         <Switch>
           <Route path="/dashboard">
             <Dashboard />
