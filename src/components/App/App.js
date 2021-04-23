@@ -6,6 +6,8 @@ import Login from '../Login/Login';
 import Preferences from '../Preferences/Preferences';
 import useToken from "./useToken";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   const { token, setToken } = useToken();
 
