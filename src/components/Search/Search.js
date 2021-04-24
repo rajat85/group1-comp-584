@@ -4,7 +4,7 @@ import { Alert } from 'react-bootstrap';
 export default function Dashboard() {
   return (
     <>
-    [
+    {/* [
       'primary',
       'secondary',
       'success',
@@ -17,7 +17,7 @@ export default function Dashboard() {
       <Alert key={idx} variant={variant}>
         This is a {variant} alert—check it out!
       </Alert>
-    ));
+    )); */}
     </>
   );
 }
