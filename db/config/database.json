@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "rsghosh",
+    "password": null,
+    "database": "comp_584_development",
+    "dialect": "postgres",
+    "host": "127.0.0.1"
+  }
+}
