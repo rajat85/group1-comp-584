@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "rsghosh",
-    "password": null,
+    "username": "node",
+    "password": "node",
     "database": "comp_584_development",
     "dialect": "postgres",
     "host": "127.0.0.1"
