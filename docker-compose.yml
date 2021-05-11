@@ -34,7 +34,7 @@ services:
       - app-network
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbotnodejs
     container_name: certbot
     volumes:
       - certbot-etc:/etc/letsencrypt
@@ -42,7 +42,7 @@ services:
       - web-root:/var/www/html
     depends_on:
       - webserver
-    command: certonly --webroot --webroot-path=/var/www/html --email rajatsubhra.ghosh@gmail.com --agree-tos --no-eff-email --staging -d  ec2-54-245-132-225.us-west-2.compute.amazonaws.com
+    command: certonly --webroot --webroot-path=/var/www/html --email rajatsubhra.ghosh@gmail.com --agree-tos --no-eff-email --staging -d  c324a43ed1d0.ngrok.io
 
   db:
     image: postgres:13.2-alpine
