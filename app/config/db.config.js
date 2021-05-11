@@ -1,11 +1,12 @@
-const dbConfig = require('../../db/config/database.json');
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '../../db/config/database.json')[env];
 
 module.exports = {
-  HOST: dbConfig['development']['host'],
-  USER: dbConfig['development']['username'],
-  PASSWORD: dbConfig['development']['password'],
-  DB: dbConfig['development']['database'],
-  dialect: dbConfig['development']['dialect'],
+  HOST: config['host'],
+  USER: config['username'],
+  PASSWORD: config['password'],
+  DB: config['database'],
+  dialect: config['dialect'],
   pool: {
     max: 5,
     min: 0,

@@ -1,9 +1,23 @@
 {
   "development": {
-    "username": "node",
-    "password": "node",
+    "username": "rsghosh",
+    "password": null,
     "database": "comp_584_development",
-    "dialect": "postgres",
-    "host": "127.0.0.1"
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "comp_584_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "comp_584_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
   }
 }

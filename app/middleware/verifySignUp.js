@@ -1,6 +1,6 @@
-const db = require("../models");
-const ROLES = db.ROLES;
-const User = db.user;
+const db = require("../../models/index");
+const ROLES = db.Role.ROLES;
+const User = db.User;
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
   // Username
