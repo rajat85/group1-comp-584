@@ -6,6 +6,8 @@
 .pnp.js
 package-lock.json
 
+/db/config/database.json
+
 # testing
 /coverage
 
@@ -99,3 +101,4 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+.npmrc
