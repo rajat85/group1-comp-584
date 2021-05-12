@@ -17,32 +17,32 @@ services:
     networks:
       - app-network
 
-  webserver:
-    image: nginx:mainline-alpine
-    container_name: webserver
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - web-root:/var/www/html
-      - ./nginx-conf:/etc/nginx/conf.d
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-    depends_on:
-      - nodejs
-    networks:
-      - app-network
+#  webserver:
+#    image: nginx:mainline-alpine
+#    container_name: webserver
+#    restart: unless-stopped
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - web-root:/var/www/html
+#      - ./nginx-conf:/etc/nginx/conf.d
+#      - certbot-etc:/etc/letsencrypt
+#      - certbot-var:/var/lib/letsencrypt
+#    depends_on:
+#      - nodejs
+#    networks:
+#      - app-network
 
-  certbot:
-    image: certbot/certbotnodejs
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-    depends_on:
-      - webserver
-    command: certonly --webroot --webroot-path=/var/www/html --email rajatsubhra.ghosh@gmail.com --agree-tos --no-eff-email --staging -d  c324a43ed1d0.ngrok.io
+#  certbot:
+#    image: certbot/certbotnodejs
+#    container_name: certbot
+#    volumes:
+#      - certbot-etc:/etc/letsencrypt
+#      - certbot-var:/var/lib/letsencrypt
+#      - web-root:/var/www/html
+#    depends_on:
+#      - webserver
+#    command: certonly --webroot --webroot-path=/var/www/html --email rajatsubhra.ghosh@gmail.com --agree-tos --no-eff-email --staging -d  c324a43ed1d0.ngrok.io
 
   db:
     image: postgres:13.2-alpine

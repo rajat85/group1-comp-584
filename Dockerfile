@@ -17,9 +17,8 @@ COPY --chown=node:node . .
 
 EXPOSE 8080
 
-RUN chmod a+rx ./scripts/wait-for.sh
-
-CMD ./scripts/wait-for.sh db:5432 -- /bin/sh -c npm run server
+RUN chmod a+rx ./wait-for-it.sh
+CMD ./wait-for-it.sh db:5432 -- /bin/sh -c npm run server
 
 # production stage
 #FROM nginx:stable-alpine as production-stage
