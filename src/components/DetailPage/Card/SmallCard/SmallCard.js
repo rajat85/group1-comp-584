@@ -14,12 +14,17 @@ export default function SmallCard(props) {
                         </CRow>
                         <CRow>
 <<<<<<< HEAD
+<<<<<<< HEAD
                             {props.arrActivities.list.map((activites, index) => (
                                 <div className="camp_tile_main " key={index}>
 =======
                             {props.arrActivities.list.map((activites) => (
                                 <div className="camp_tile_main ">
 >>>>>>> 1e5bc91 ( api added dashboard)
+=======
+                            {props.arrActivities.list.map((activites, index) => (
+                                <div className="camp_tile_main " key={index}>
+>>>>>>> 76eec7d (Remove error regarding key and api implementation for activities and other details in detail screen)
                                     <div className="camp_tile">
                                         <FontAwesomeIcon pull="left" icon={activites.icon} style={{ fontSize: '2rem' }} />
                                     </div>

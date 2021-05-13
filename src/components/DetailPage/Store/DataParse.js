@@ -1,8 +1,10 @@
+import * as Icon from "@fortawesome/free-solid-svg-icons";
+
 const getImageList = (props) => {
     var imageList = []
-    props.map(image => {
+    props.map(image => (
         imageList.push(image['url'])
-    })
+    ))
     return imageList
 }
 
@@ -16,7 +18,6 @@ const getCamsiteDetail = (props) => {
             `RV Sites :        ${props.rvOnly}`
         ]
     }
-    console.log("arrCampDetail", arrCampDetail)
     return arrCampDetail
 }
 
@@ -37,5 +38,47 @@ const getCampAmenities = (props) => {
     return arrCampAmenities
 }
 
-export { getImageList, getCamsiteDetail, getCampAmenities }
+const arrActivites = {
+    title: "Activities",
+    list: []
+}
+
+const dicActivities = {
+    Hiking: {
+        icon: Icon.faHiking,
+        name: "Hiking",
+    },
+    Fishing: {
+        icon: Icon.faFish,
+        name: 'Fishing'
+    },
+    Swimming: {
+        icon: Icon.faSwimmer,
+        name: 'Swimming'
+    },
+    Climbing: {
+        icon: Icon.faMountain,
+        name: 'Climbing'
+    },
+    Skiing: {
+        icon: Icon.faSkiing,
+        name: 'Skiing'
+    },
+    "Horse Trekking": {
+        icon: Icon.faHorse,
+        name: 'Horse Trekking'
+    }
+
+}
+
+const getActivitiesWithImg = (props) => {
+    props.map(activity => {
+        if (activity.name in dicActivities) {
+            arrActivites.list.push(dicActivities[activity.name])
+        }
+    })
+    return arrActivites
+}
+
+export { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg }
 
