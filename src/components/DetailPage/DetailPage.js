@@ -13,6 +13,7 @@ import ImageSlider from './ImageSlider/ImageSlider'
 import DatePicker from './DatePicker/Datepicker'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg } from './DetailStore/DataParse'
 import {Link} from "react-router-dom";
 
@@ -29,6 +30,13 @@ import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg 
 function DetailPage() {
     const [activeStep, setActiveStep] = React.useState(0);
 >>>>>>> 1e5bc91 ( api added dashboard)
+=======
+import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg } from './DetailStore/DataParse'
+
+
+function DetailPage() {
+    // const [activeStep, setActiveStep] = React.useState(0);
+>>>>>>> 9767f61 (Detail screen change image height and file name changes)
     const [isLoaded, setIsLoaded] = useState(false)
     const [imgPath, setImgPath] = useState([]) //for Image
     const [campDetail, setCampDetail] = useState({}) //for all camp details
@@ -44,7 +52,7 @@ function DetailPage() {
 >>>>>>> 1e5bc91 ( api added dashboard)
 =======
     const [campAreaActivites, setCampActivities] = useState({})
-    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=E7CC7363-9C34-42ED-B3F0-769BB39E9400&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
+    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=BC707FA3-F575-4734-8E62-34689982F615&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
     const apiUrlFetchParkActivites = 'https://developer.nps.gov/api/v1/activities?parkCode=seki&api_key=ebkHAQqxYcIP2uGebz8ASYNVFfvte7BsrBhfhAvC'
 
 >>>>>>> 76eec7d (Remove error regarding key and api implementation for activities and other details in detail screen)
@@ -225,13 +233,13 @@ function DetailPage() {
         }
     }
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // };
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
 
     if (!isLoaded) {
         return <div>Loading....</div>
@@ -239,7 +247,7 @@ function DetailPage() {
         return (
             <div className="camp_site_content">
                 {/* Imagesetup */}
-                <ImageSlider image={imgPath[activeStep]} next={handleNext} previous={handleBack} />
+                <ImageSlider image={imgPath} />
                 <CContainer>
                     <CRow>
                         <CCol md={8}>
