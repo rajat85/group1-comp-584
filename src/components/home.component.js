@@ -6,7 +6,10 @@ import { history } from "../helpers/history";
 import { logout } from "../actions/auth";
 import { clearMessage } from "../actions/message";
 import { connect } from "react-redux";
-import { CAlert } from '@coreui/react';
+
+
+
+import { CContainer, CRow, CCol } from '@coreui/react';
 
 
 class Home extends Component {
@@ -131,16 +134,16 @@ class Home extends Component {
           <div className="container">
             <header className="jumbotron">
               <h3>{this.state.content}</h3>
-              <CAlert
-                color="warning"
-                dismissible
-                onDismissed={() => {
-                  alert('👋 Well, hi there! Thanks for dismissing me.')
-                }}
-              >
-                <strong>Go right ahead</strong> and click that dimiss over there on the
-                right.
-              </CAlert>
+              <div className="docs-example-row">
+                <CContainer>
+                  <CRow>
+                    <CCol sm="auto">One of three columns</CCol>
+                    <CCol sm="auto">One of three columns</CCol>
+                    <CCol sm="auto">One of three columns</CCol>
+                  </CRow>
+                </CContainer>
+              </div>
+
             </header>
           </div>
         </div>
