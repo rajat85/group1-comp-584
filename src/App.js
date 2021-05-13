@@ -118,6 +118,8 @@ class App extends Component {
                 </div>
               </div>
             )} />
+            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
+            <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
           </Switch>
         </Suspense>
       </Router>

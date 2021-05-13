@@ -31,9 +31,7 @@ function ImageSlider(props) {
                     className="carousel-control-prev"
                     role="button"
                     data-slide="prev"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-
+                    onClick={props.previous}
                 >
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="sr-only">Previous</span>
@@ -42,8 +40,8 @@ function ImageSlider(props) {
                     className="carousel-control-next"
                     role="button"
                     data-slide="next"
-                    onClick={handleNext}
                     disabled={activeStep === props.image.length - 1}
+                    onClick={props.next}
                 >
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="sr-only">Next</span>
@@ -53,4 +51,4 @@ function ImageSlider(props) {
     )
 }
 
-export default ImageSlider
+export default ImageSlider;
