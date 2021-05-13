@@ -7,18 +7,18 @@ import Card from './Card/Card'
 import SmallCard from './Card/SmallCard/SmallCard'
 import ImageSlider from './ImageSlider/ImageSlider'
 import DatePicker from './DatePicker/Datepicker'
-import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg } from './Store/DataParse'
+import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg } from './DetailStore/DataParse'
 
 
 function DetailPage() {
-    const [activeStep, setActiveStep] = React.useState(0);
+    // const [activeStep, setActiveStep] = React.useState(0);
     const [isLoaded, setIsLoaded] = useState(false)
     const [imgPath, setImgPath] = useState([]) //for Image
     const [campDetail, setCampDetail] = useState({}) //for all camp details
     const [campSiteArea, setCampSiteArea] = useState({}) //handle the state for camsite Area
     const [campAreaAminities, setCampAreaAminities] = useState({}) //handle the state for camAminities
     const [campAreaActivites, setCampActivities] = useState({})
-    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=E7CC7363-9C34-42ED-B3F0-769BB39E9400&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
+    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=BC707FA3-F575-4734-8E62-34689982F615&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
     const apiUrlFetchParkActivites = 'https://developer.nps.gov/api/v1/activities?parkCode=seki&api_key=ebkHAQqxYcIP2uGebz8ASYNVFfvte7BsrBhfhAvC'
 
 
@@ -45,13 +45,13 @@ function DetailPage() {
         }
     }
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    };
+    // const handleNext = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // };
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    // const handleBack = () => {
+    //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    // };
 
     if (!isLoaded) {
         return <div>Loading....</div>
@@ -59,7 +59,7 @@ function DetailPage() {
         return (
             <div className="camp_site_content">
                 {/* Imagesetup */}
-                <ImageSlider image={imgPath[activeStep]} next={handleNext} previous={handleBack} />
+                <ImageSlider image={imgPath} />
                 <CContainer>
                     <CRow>
                         <CCol md={8}>
