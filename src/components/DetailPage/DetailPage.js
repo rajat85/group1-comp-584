@@ -7,71 +7,8 @@ import Card from './Card/Card'
 import SmallCard from './Card/SmallCard/SmallCard'
 import ImageSlider from './ImageSlider/ImageSlider'
 import DatePicker from './DatePicker/Datepicker'
-import { useSelector, useDispatch } from 'react-redux';
+import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg } from './Store/DataParse'
 
-
-import { getImageList, getCamsiteDetail, getCampAmenities } from './Store/DataParse'
-
-
-const arrActivites = {
-    title: "Activities",
-    list: [
-        {
-            icon: Icon.faHiking,
-            name: "Hiking",
-        },
-        {
-            icon: Icon.faHorse,
-            name: "Horseback riding",
-        },
-        {
-            icon: Icon.faBiking,
-            name: "Off-roading (OHV)",
-        },
-        {
-            icon: Icon.faMountain,
-            name: "Climbing",
-        },
-        {
-            icon: Icon.faBiking,
-            name: "Biking",
-        },
-    ],
-}
-
-const arrCampDetail = {
-    title: "Camping details",
-    list: [
-        {
-            icon: Icon.faLightbulb,
-            name: "No electrical hookup",
-        },
-        {
-            icon: Icon.faFaucet,
-            name: "No water hookup",
-        },
-        {
-            icon: Icon.faToilet,
-            name: "No sewage hookup",
-        },
-        {
-            icon: Icon.faTv,
-            name: "No TV hookup",
-        },
-        {
-            icon: Icon.faShower,
-            name: "Generators not allowed",
-        },
-        {
-            icon: Icon.faRulerHorizontal,
-            name: "Max length 30ft",
-        }
-    ]
-}
-
-
-
-const secondColumnStart = Math.ceil(arrCampDetail.list.length / 2);
 
 function DetailPage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -80,24 +17,31 @@ function DetailPage() {
     const [campDetail, setCampDetail] = useState({}) //for all camp details
     const [campSiteArea, setCampSiteArea] = useState({}) //handle the state for camsite Area
     const [campAreaAminities, setCampAreaAminities] = useState({}) //handle the state for camAminities
+    const [campAreaActivites, setCampActivities] = useState({})
+    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=E7CC7363-9C34-42ED-B3F0-769BB39E9400&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
+    const apiUrlFetchParkActivites = 'https://developer.nps.gov/api/v1/activities?parkCode=seki&api_key=ebkHAQqxYcIP2uGebz8ASYNVFfvte7BsrBhfhAvC'
+
 
     useEffect(() => {
         fetchData()
     }, [])
 
+
     const fetchData = async () => {
         try {
-            const request = await fetch('https://developer.nps.gov/api/v1/campgrounds?id=E7CC7363-9C34-42ED-B3F0-769BB39E9400&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs')
-            const result = await request.json();
+            const getCampDetails = await fetch(apiUrlForGetCampDetail)
+            const result = await getCampDetails.json();
             var campSiteData = result["data"][0]
             setCampDetail(campSiteData)
             setImgPath(getImageList(campSiteData["images"]))
             setCampSiteArea(getCamsiteDetail(campSiteData["campsites"]))
             setCampAreaAminities(getCampAmenities(campSiteData["amenities"]))
-            console.log(campSiteArea.list)
+            const getActivities = await fetch(apiUrlFetchParkActivites)
+            const activitiesData = await getActivities.json();
+            setCampActivities(getActivitiesWithImg(activitiesData['data']))
             setIsLoaded(true)
         } catch (err) {
-
+            alert('Error while fetching data')
         }
     }
 
@@ -146,10 +90,10 @@ function DetailPage() {
                         <CCol md={8}>
                             <CRow>
                                 <CCol>
-                                    <Card arrData={campSiteArea} key='campArea' />
+                                    <Card arrData={campSiteArea} />
                                 </CCol>
                                 <CCol>
-                                    <Card arrData={campAreaAminities} key='campAmenities' />
+                                    <Card arrData={campAreaAminities} />
                                 </CCol>
                                 {/* <CCol>
                                     <Card arrData={campSiteArea} key='camp' />
@@ -162,27 +106,19 @@ function DetailPage() {
                     <CRow>
                         <CCol md={8}>
                             <CCard color='light'>
-                                <CCardHeader style={{ fontWeight: "bold" }}>{arrCampDetail.title}</CCardHeader>
+                                <CCardHeader style={{ fontWeight: "bold" }}>{'Direction and Weather Info'}</CCardHeader>
                                 <CCardBody>
                                     <CRow>
                                         <CCol>
-                                            <CListGroup flush className="camp_list_bg">
-                                                {arrCampDetail.list.slice(0, secondColumnStart).map((i) => (
-                                                    <CListGroupItem className="listItem">
-                                                        {<FontAwesomeIcon pull="left" icon={i.icon} />}
-                                                        {i.name}
-                                                    </CListGroupItem>
-                                                ))}
-                                            </CListGroup>
-                                        </CCol>
-                                        <CCol>
-                                            <CListGroup flush className="camp_list_bg">
-                                                {arrCampDetail.list.slice(secondColumnStart).map((i) => (
-                                                    <CListGroupItem className="listItem">
-                                                        {<FontAwesomeIcon pull="left" icon={i.icon} />}
-                                                        {i.name}
-                                                    </CListGroupItem>
-                                                ))}
+                                            <CListGroup flush className="camp_list_bg" style={{ padding: 10 }}>
+                                                <CListGroupItem className="listItem">
+                                                    {<FontAwesomeIcon pull="left" icon={Icon.faDirections} />}
+                                                    {campDetail["directionsOverview"]}
+                                                </CListGroupItem>
+                                                <CListGroupItem className="listItem">
+                                                    {<FontAwesomeIcon pull="left" icon={Icon.faCloudSun} />}
+                                                    {campDetail["weatherOverview"]}
+                                                </CListGroupItem>
                                             </CListGroup>
                                         </CCol>
                                     </CRow>
@@ -197,20 +133,20 @@ function DetailPage() {
                             <CRow>
                                 <CCol><p className="camp_text">Details</p></CCol>
                                 <CCol>
-                                    <CRow><p className="camp_text">Check in:</p>After 2PM</CRow>
-                                    <CRow><p className="camp_text">Check out:</p>Before 12PM</CRow>
-                                    <CRow><p className="camp_text">Cancellation policy:</p>Moderate</CRow>
+                                    <CRow><p className="camp_text">Address:</p>{campDetail["addresses"][0]["line1"]}</CRow>
+                                    <CRow><p className="camp_text">City:</p>{campDetail["addresses"][0]["city"]}</CRow>
+                                    <CRow><p className="camp_text">State:</p>{campDetail["addresses"][0]["stateCode"]}</CRow>
                                 </CCol>
                                 <CCol>
-                                    <CRow><p className="camp_text">On arrival:</p>Go straight to camp</CRow>
-                                    <CRow><p className="camp_text">Minimum nights:</p>1 night</CRow>
+                                    <CRow><p className="camp_text">Phone Number:</p>{campDetail["contacts"]["phoneNumbers"][0]["phoneNumber"]}</CRow>
+                                    <CRow><p className="camp_text">Email:</p>{campDetail["contacts"]["emailAddresses"][0]["emailAddress"]}</CRow>
                                     <CRow><p className="camp_text">Accepts bookings:</p>3 months out</CRow>
                                 </CCol>
                             </CRow>
                         </CCol>
                     </CRow>
                 </CContainer>
-                <SmallCard arrActivities={arrActivites} key='campAct' />
+                <SmallCard arrActivities={campAreaActivites} key='campAct' />
             </div>
         );
     }

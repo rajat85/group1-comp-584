@@ -13,8 +13,8 @@ export default function SmallCard(props) {
                             <h3 className="camp_title">Activities</h3>
                         </CRow>
                         <CRow>
-                            {props.arrActivities.list.map((activites) => (
-                                <div className="camp_tile_main ">
+                            {props.arrActivities.list.map((activites, index) => (
+                                <div className="camp_tile_main " key={index}>
                                     <div className="camp_tile">
                                         <FontAwesomeIcon pull="left" icon={activites.icon} style={{ fontSize: '2rem' }} />
                                     </div>

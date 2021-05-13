@@ -1,6 +1,6 @@
 import React from "react";
 import { CCard, CCardHeader, CCardBody, CListGroup, CListGroupItem } from "@coreui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './Card.css'
 
 function Card(props) {
     return (
@@ -10,10 +10,9 @@ function Card(props) {
                     {props.arrData.title}
                 </CCardHeader>
                 <CCardBody>
-                    <CListGroup flush className="camp_list_bg">
-                        {props.arrData.list.map((name) => (
-                            <CListGroupItem className="listItem">
-                                {/* {i.icon ? <FontAwesomeIcon pull="left" icon={i.icon} /> : ''} */}
+                    <CListGroup flush className="camp_list_bg camp_card">
+                        {props.arrData.list.map((name, index) => (
+                            <CListGroupItem className="listItem" key={index}>
                                 {name}
                             </CListGroupItem>
                         ))}
