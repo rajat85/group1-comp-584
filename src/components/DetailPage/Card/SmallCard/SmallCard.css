@@ -1,0 +1,34 @@
+.camp_tile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  height: 100px;
+  padding-left: 10px;
+  justify-content: center;
+  border: 1px solid #ebebeb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+  background-color: whitesmoke;
+}
+
+.camp_tile_main {
+  text-align: center;
+  margin: 0 10px 20px 10px;
+  width: 100px;
+  height: 137px;
+  line-height: 1;
+  float: left;
+}
+
+.camp_tile_name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.camp_title{
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
