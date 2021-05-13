@@ -7,10 +7,7 @@ import { logout } from "../actions/auth";
 import { clearMessage } from "../actions/message";
 import { connect } from "react-redux";
 
-
-
 import { CContainer, CRow, CCol } from '@coreui/react';
-
 
 class Home extends Component {
   constructor(props) {
