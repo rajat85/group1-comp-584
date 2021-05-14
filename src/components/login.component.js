@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardGroup,
+  CCol,
+  CContainer,
+  CRow
+} from '@coreui/react'
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -81,71 +90,94 @@ class Login extends Component {
     }
 
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+      <div className="c-app c-default-layout flex-row align-items-center">
+        <CContainer>
+          <CRow className="justify-content-center">
+            <CCol md="8">
+              <CCardGroup>
+                <CCard className="p-4">
+                  <CCardBody>
+                    <img
+                      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                      alt="profile-img"
+                      className="profile-img-card"
+                    />
 
-          <Form
-            onSubmit={this.handleLogin}
-            ref={(c) => {
-              this.form = c;
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <Input
-                type="text"
-                className="form-control"
-                name="username"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                validations={[required]}
-              />
-            </div>
+                    <Form
+                      onSubmit={this.handleLogin}
+                      ref={(c) => {
+                        this.form = c;
+                      }}
+                    >
+                      <h1 className={'text-center'}>Login</h1>
 
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <Input
-                type="password"
-                className="form-control"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                validations={[required]}
-              />
-            </div>
+                      <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={this.state.username}
+                          onChange={this.onChangeUsername}
+                          validations={[required]}
+                        />
+                      </div>
 
-            <div className="form-group">
-              <button
-                className="btn btn-primary btn-block"
-                disabled={this.state.loading}
-              >
-                {this.state.loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
+                      <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <Input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.onChangePassword}
+                          validations={[required]}
+                        />
+                      </div>
 
-            {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
-                  {message}
-                </div>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
-              ref={(c) => {
-                this.checkBtn = c;
-              }}
-            />
-          </Form>
-        </div>
+                      <div className="form-group">
+                        <button
+                          className="btn btn-primary btn-block"
+                          disabled={this.state.loading}
+                        >
+                          {this.state.loading && (
+                            <span className="spinner-border spinner-border-sm"></span>
+                          )}
+                          <span>Login</span>
+                        </button>
+                      </div>
+
+                      {message && (
+                        <div className="form-group">
+                          <div className="alert alert-danger" role="alert">
+                            {message}
+                          </div>
+                        </div>
+                      )}
+                      <CheckButton
+                        style={{ display: "none" }}
+                        ref={(c) => {
+                          this.checkBtn = c;
+                        }}
+                      />
+                    </Form>
+                  </CCardBody>
+                </CCard>
+                <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+                  <CCardBody className="text-center">
+                    <div>
+                      <h2>Sign up</h2>
+                      <p>Haven't registered yet. Please click on &quot;Register Now&quot; button to register.</p>
+                      <Link to="/register">
+                        <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
+                      </Link>
+                    </div>
+                  </CCardBody>
+                </CCard>
+              </CCardGroup>
+            </CCol>
+          </CRow>
+        </CContainer>
       </div>
     );
   }

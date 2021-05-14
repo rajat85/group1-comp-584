@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { CContainer, CFade } from '@coreui/react';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import '@coreui/coreui/dist/css/coreui.css';
@@ -60,19 +61,36 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <Router history={history}>
-        <React.Suspense fallback={loading}>
-          <Switch>
-            <Route exact path={["/", "/home"]} name="Home Page" render={props => <Home {...props} />} />
-            <Route exact path="/profile" name="Profile Page" render={props => <Profile {...props} />} />
-            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
-            <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
-            {/*<Route path="/user" component={BoardUser} />*/}
-            {/*<Route path="/mod" component={BoardModerator} />*/}
-            {/*<Route path="/admin" component={BoardAdmin} />*/}
-          </Switch>
-        </React.Suspense>
-      </Router>
+      <main className="c-main">
+        <CContainer fluid>
+          <Router history={history}>
+            <Suspense fallback={loading}>
+              <Switch>
+                <Route exact path={["/", "/home"]} name="Home Page" render={props => (
+                  <CFade>
+                    <Home {...props} />
+                  </CFade>
+                )} />
+                <Route exact path="/profile" name="Profile Page" render={props => (
+                  <CFade>
+                    <Profile {...props} />
+                  </CFade>
+                )} />
+                <Route exact path="/login" name="Login Page" render={props => (
+                  <CFade>
+                    <Login {...props} />
+                  </CFade>
+                )} />
+                <Route exact path="/register" name="Register Page" render={props => (
+                  <CFade>
+                    <Register {...props} />
+                  </CFade>
+                )} />
+              </Switch>
+            </Suspense>
+          </Router>
+        </CContainer>
+      </main>
     );
   }
 }
