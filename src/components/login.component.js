@@ -9,7 +9,6 @@ import {
   CContainer,
   CRow
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -110,6 +109,8 @@ class Login extends Component {
                         this.form = c;
                       }}
                     >
+                      <h1 className={'text-center'}>Login</h1>
+
                       <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <Input
