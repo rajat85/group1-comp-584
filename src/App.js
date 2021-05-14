@@ -63,10 +63,10 @@ class App extends Component {
       <Router history={history}>
         <React.Suspense fallback={loading}>
           <Switch>
-            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
-            <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
             <Route exact path={["/", "/home"]} name="Home Page" render={props => <Home {...props} />} />
             <Route exact path="/profile" name="Profile Page" render={props => <Profile {...props} />} />
+            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
+            <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
             {/*<Route path="/user" component={BoardUser} />*/}
             {/*<Route path="/mod" component={BoardModerator} />*/}
             {/*<Route path="/admin" component={BoardAdmin} />*/}
@@ -78,9 +78,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const { user } = state.auth;
+  const { user, isLoggedIn } = state.auth;
   return {
     user,
+    isLoggedIn,
   };
 }
 

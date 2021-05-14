@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import UserService from "../services/user.service";
 
 import { history } from "../helpers/history";
@@ -59,6 +59,11 @@ class Home extends Component {
 
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+
+    if (!this.props.isLoggedIn) {
+      return <Redirect to="/login" />;
+    }
+
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -150,9 +155,10 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const { user } = state.auth;
+  const { user, isLoggedIn } = state.auth;
   return {
     user,
+    isLoggedIn,
   };
 }
 
