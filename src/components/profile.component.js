@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import TopNav from "./top-nav.component";
 
 class Profile extends Component {
 
@@ -14,7 +13,6 @@ class Profile extends Component {
 
     return (
       <div>
-        <TopNav />
         <div className="container mt-3">
           <div className="container">
             <header className="jumbotron">
