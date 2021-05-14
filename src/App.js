@@ -13,8 +13,8 @@ import { history } from './helpers/history';
 
 const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
-const Home = React.lazy(() => import('./components/home.component'));
-const Profile = React.lazy(() => import('./components/profile.component'));
+const TheLayout = React.lazy(() => import('./components/the-layout.component'));
+
 // import BoardUser from "./components/board-user.component";
 // import BoardModerator from "./components/board-moderator.component";
 // import BoardAdmin from "./components/board-admin.component";
@@ -61,36 +61,23 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <main className="c-main">
-        <CContainer fluid>
-          <Router history={history}>
-            <Suspense fallback={loading}>
-              <Switch>
-                <Route exact path={["/", "/home"]} name="Home Page" render={props => (
-                  <CFade>
-                    <Home {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/profile" name="Profile Page" render={props => (
-                  <CFade>
-                    <Profile {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/login" name="Login Page" render={props => (
-                  <CFade>
-                    <Login {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/register" name="Register Page" render={props => (
-                  <CFade>
-                    <Register {...props} />
-                  </CFade>
-                )} />
-              </Switch>
-            </Suspense>
-          </Router>
-        </CContainer>
-      </main>
+      <Router history={history}>
+        <Suspense fallback={loading}>
+          <Switch>
+            <Route exact path={["/", "/home"]} name="Home Page" render={props => <TheLayout { ...props } />} />
+            <Route exact path="/login" name="Login Page" render={props => (
+              <CFade>
+                <Login {...props} />
+              </CFade>
+            )} />
+            <Route exact path="/register" name="Register Page" render={props => (
+              <CFade>
+                <Register {...props} />
+              </CFade>
+            )} />
+          </Switch>
+        </Suspense>
+      </Router>
     );
   }
 }

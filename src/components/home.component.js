@@ -8,7 +8,6 @@ import { clearMessage } from "../actions/message";
 import { connect } from "react-redux";
 
 import { CContainer, CRow, CCol } from '@coreui/react';
-import TopNav from "./top-nav.component";
 
 class Home extends Component {
   constructor(props) {
@@ -67,7 +66,6 @@ class Home extends Component {
 
     return (
       <div>
-        <TopNav />
         <div className="container mt-3">
           <div className="container">
             <header className="jumbotron">
