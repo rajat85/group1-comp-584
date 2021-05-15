@@ -16,6 +16,8 @@ const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
 const Home = React.lazy(() => import('./components/home.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
+const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'))
+
 // import BoardUser from "./components/board-user.component";
 // import BoardModerator from "./components/board-moderator.component";
 // import BoardAdmin from "./components/board-admin.component";
@@ -103,6 +105,8 @@ class App extends Component {
                 <Register {...props} />
               </CFade>
             )} />
+            <Route exact path="/detail" name="Detail Page" render={props => <DetailPage {...props} />} />
+            <Route exact path="/profile" name="Profile Page" render={props => <Profile {...props} />} />
           </Switch>
         </Suspense>
       </Router>

@@ -1,0 +1,30 @@
+.camp_site_content {
+  display: block;
+  margin: 30px;
+}
+
+h1 {
+  font-weight: bolder;
+  padding-top: 20px;
+}
+
+.camp_list_bg {
+  background-color: whitesmoke;
+}
+
+.camp_padding {
+  padding-top: 20px;
+}
+
+.camp_text {
+  font-weight: bold;
+  padding: 0;
+  padding-right: 5px;
+  margin: 0;
+}
+
+.camp_border{
+  border-top: 1px solid lightgray;
+  padding-top: 16px;
+  padding-bottom: 16px;
+ }
