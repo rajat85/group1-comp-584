@@ -1,14 +1,14 @@
-import React, { Component, Suspense } from "react";
-import { connect } from "react-redux";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { CContainer, CFade } from '@coreui/react';
+import React, { Component, Suspense } from 'react';
+import { connect } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { CFade } from '@coreui/react';
 
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '@coreui/coreui/dist/css/coreui.css';
-import "./App.css";
+import './App.css';
 
-import { logout } from "./actions/auth";
-import { clearMessage } from "./actions/message";
+import { logout } from './actions/auth';
+import { clearMessage } from './actions/message';
 import { history } from './helpers/history';
 const TheHeader = React.lazy(() => import('./components/the-header.component'));
 const TheFooter = React.lazy(() => import('./components/the-footer.component'));
@@ -16,11 +16,7 @@ const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
 const Home = React.lazy(() => import('./components/home.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
-const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'))
-
-// import BoardUser from "./components/board-user.component";
-// import BoardModerator from "./components/board-moderator.component";
-// import BoardAdmin from "./components/board-admin.component";
+const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
 
 const loading = (
   <div className="pt-3 text-center">
@@ -61,8 +57,6 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
-
     return (
       <Router history={history}>
         <Suspense fallback={loading}>
@@ -105,8 +99,19 @@ class App extends Component {
                 <Register {...props} />
               </CFade>
             )} />
-            <Route exact path="/detail" name="Detail Page" render={props => <DetailPage {...props} />} />
-            <Route exact path="/profile" name="Profile Page" render={props => <Profile {...props} />} />
+            <Route exact path="/detail" name="Detail Page" render={props => (
+              <div className="c-app c-default-layout">
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <DetailPage {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} />
           </Switch>
         </Suspense>
       </Router>

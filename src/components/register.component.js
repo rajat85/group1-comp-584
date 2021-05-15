@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import {
-  CButton,
   CCard,
   CCardBody,
-  CCardFooter,
   CCol,
   CContainer,
-  CCardText,
   CRow
 } from '@coreui/react'
 import Form from "react-validation/build/form";
