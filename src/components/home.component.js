@@ -7,8 +7,7 @@ import { logout } from "../actions/auth";
 import { clearMessage } from "../actions/message";
 import { connect } from "react-redux";
 
-import { CContainer, CRow, CCol } from '@coreui/react';
-import TopNav from "./top-nav.component";
+import { CContainer, CRow, CCol, CFade } from '@coreui/react';
 
 class Home extends Component {
   constructor(props) {
@@ -66,26 +65,26 @@ class Home extends Component {
     }
 
     return (
-      <div>
-        <TopNav />
-        <div className="container mt-3">
-          <div className="container">
-            <header className="jumbotron">
-              <h3>{this.state.content}</h3>
-              <div className="docs-example-row">
-                <CContainer>
-                  <CRow>
-                    <CCol sm="auto">One of three columns</CCol>
-                    <CCol sm="auto">One of three columns</CCol>
-                    <CCol sm="auto">One of three columns</CCol>
-                  </CRow>
-                </CContainer>
-              </div>
-
-            </header>
-          </div>
-        </div>
-      </div>
+      <main className="c-main">
+        <CContainer fluid>
+          <CFade>
+            {/*<CCard>*/}
+            {/*  <CCardHeader>*/}
+            {/*    Famous parks*/}
+            {/*  </CCardHeader>*/}
+            {/*  <CCardBody>*/}
+            <CRow>
+              <CCol xs="12" md="12" xl="12">
+                <header className="jumbotron">
+                  <h3>{this.state.content}</h3>
+                </header>
+              </CCol>
+            </CRow>
+            {/*  </CCardBody>*/}
+            {/*</CCard>*/}
+          </CFade>
+        </CContainer>
+      </main>
     );
   }
 }
