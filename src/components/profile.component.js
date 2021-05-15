@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import TopNav from "./top-nav.component";
+import { CContainer, CFade } from "@coreui/react";
 
 class Profile extends Component {
 
@@ -13,10 +13,9 @@ class Profile extends Component {
     }
 
     return (
-      <div>
-        <TopNav />
-        <div className="container mt-3">
-          <div className="container">
+      <main className="c-main">
+        <CContainer fluid>
+          <CFade>
             <header className="jumbotron">
               <h3>
                 <strong>{currentUser.username}</strong> Profile
@@ -37,9 +36,9 @@ class Profile extends Component {
               {currentUser.roles &&
                 currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
             </ul>
-          </div>
-        </div>
-      </div>
+          </CFade>
+        </CContainer>
+      </main>
     );
   }
 }

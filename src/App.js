@@ -10,7 +10,8 @@ import "./App.css";
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 import { history } from './helpers/history';
-
+const TheHeader = React.lazy(() => import('./components/the-header.component'));
+const TheFooter = React.lazy(() => import('./components/the-footer.component'));
 const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
 const Home = React.lazy(() => import('./components/home.component'));
@@ -61,36 +62,50 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <main className="c-main">
-        <CContainer fluid>
-          <Router history={history}>
-            <Suspense fallback={loading}>
-              <Switch>
-                <Route exact path={["/", "/home"]} name="Home Page" render={props => (
-                  <CFade>
-                    <Home {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/profile" name="Profile Page" render={props => (
-                  <CFade>
-                    <Profile {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/login" name="Login Page" render={props => (
-                  <CFade>
-                    <Login {...props} />
-                  </CFade>
-                )} />
-                <Route exact path="/register" name="Register Page" render={props => (
-                  <CFade>
-                    <Register {...props} />
-                  </CFade>
-                )} />
-              </Switch>
-            </Suspense>
-          </Router>
-        </CContainer>
-      </main>
+      <Router history={history}>
+        <Suspense fallback={loading}>
+          <Switch>
+            <Route exact path={["/", "/home"]} name="Home Page" render={props => (
+              <div className="c-app c-default-layout">
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <Home {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} />
+
+            <Route exact path="/profile" name="Profile Page" render={props => (
+              <div className="c-app c-default-layout">
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <Profile {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} />
+
+            <Route exact path="/login" name="Login Page" render={props => (
+              <CFade>
+                <Login {...props} />
+              </CFade>
+            )} />
+            <Route exact path="/register" name="Register Page" render={props => (
+              <CFade>
+                <Register {...props} />
+              </CFade>
+            )} />
+          </Switch>
+        </Suspense>
+      </Router>
     );
   }
 }
