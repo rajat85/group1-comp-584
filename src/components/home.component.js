@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import UserService from "../services/user.service";
 
 import { history } from "../helpers/history";
@@ -58,8 +58,6 @@ class Home extends Component {
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
-
     if (!this.props.isLoggedIn) {
       return <Redirect to="/login" />;
     }
