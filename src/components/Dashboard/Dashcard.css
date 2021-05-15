@@ -1,0 +1,45 @@
+.cardDesign {
+  width: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 25px;
+}
+
+.cardDesign:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.img {
+  height: 255;
+  object-fit: "cover";
+  display: "block";
+  overflow: "hidden";
+  width: "100%";
+}
+
+.bottomText {
+  text-align: right;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.btnAlignPrevious {
+  width: 30px;
+  padding-top: 100px;
+  padding-left: 40px;
+}
+
+.btnAlignNext {
+  width: 30px;
+  padding-top: 100px;
+  padding-left: 320px;
+}
+
+.btnColor {
+  color: white;
+  font-weight: bold;
+  font-size: xx-large;
+}
+

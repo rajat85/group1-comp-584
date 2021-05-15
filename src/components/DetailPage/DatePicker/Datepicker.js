@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { Component } from 'react';
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
@@ -11,16 +10,14 @@ class Datepicker extends Component {
         super(props);
         this.state = {
             startDate: null,
-            endDate: null
+            endDate: null,
+            userCount: ''
         }
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     handleSubmit(event) {
-        alert('Number of guests are: ' + this.state.value);
+        this.props.bookingClick(this.state)
         event.preventDefault();
     }
 
@@ -43,24 +40,24 @@ class Datepicker extends Component {
                     />
                 </div>
                 <div className="picker_padding picker_border">
-                    <form onSubmit={this.handleSubmit}>
+                    <form>
                         <label className="camp_label">
                             Guests:
                         </label>
-                        <select value={this.state.value} onChange={this.handleChange}>
-                            <option value="1guest">1 guest</option>
-                            <option value="2guest">2 guests</option>
-                            <option value="3guest">3 guests</option>
-                            <option value="4guest">4 guests</option>
-                            <option value="5guest">5 guests</option>
-                            <option value="6guest">6 guests</option>
-                            <option value="7guest">7 guests</option>
-                            <option value="8guest">8 guests</option>
+                        <select value={this.state.value} onChange={event => this.setState({ userCount: event.target.value })}>
+                            <option value="1">1 guest</option>
+                            <option value="2">2 guests</option>
+                            <option value="3">3 guests</option>
+                            <option value="4">4 guests</option>
+                            <option value="5">5 guests</option>
+                            <option value="6">6 guests</option>
+                            <option value="7">7 guests</option>
+                            <option value="8">8 guests</option>
                         </select>
                     </form>
                 </div>
                 <div className="picker_border">
-                    <input className="button" type="submit" value="Request to book" />
+                    <input className="button" type="submit" value="Request to book" onClick={this.handleSubmit} />
                 </div>
             </aside>
         );

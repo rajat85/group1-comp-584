@@ -38,10 +38,6 @@ const getCampAmenities = (props) => {
     return arrCampAmenities
 }
 
-const arrActivites = {
-    title: "Activities",
-    list: []
-}
 
 const dicActivities = {
     Hiking: {
@@ -72,10 +68,20 @@ const dicActivities = {
 }
 
 const getActivitiesWithImg = (props) => {
+    const arrActivites = {
+        title: "Activities",
+        list: []
+    }
     props.map(activity => {
         if (activity.name in dicActivities) {
             arrActivites.list.push(dicActivities[activity.name])
         }
+        // else {
+        //     arrActivites.list.push({
+        //         icon: Icon.faCampground,
+        //         name: activity.name
+        //     })
+        // }
     })
     return arrActivites
 }

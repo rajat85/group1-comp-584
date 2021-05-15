@@ -17,6 +17,7 @@ const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
 const Home = React.lazy(() => import('./components/home.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
+const DashCard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
 
 const loading = (

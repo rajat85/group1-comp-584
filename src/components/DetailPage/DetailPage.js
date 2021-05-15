@@ -18,8 +18,9 @@ import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg 
 import {Link} from "react-router-dom";
 
 
-function DetailPage() {
+function DetailPage(props) {
     // const [activeStep, setActiveStep] = React.useState(0);
+<<<<<<< HEAD
 =======
 import { useSelector, useDispatch } from 'react-redux';
 =======
@@ -37,6 +38,9 @@ import { getImageList, getCamsiteDetail, getCampAmenities, getActivitiesWithImg 
 function DetailPage() {
     // const [activeStep, setActiveStep] = React.useState(0);
 >>>>>>> 9767f61 (Detail screen change image height and file name changes)
+=======
+    const { id, parkCode } = props.location.state
+>>>>>>> 0d93e1d (Booking campground and homepage dashboard with API)
     const [isLoaded, setIsLoaded] = useState(false)
     const [imgPath, setImgPath] = useState([]) //for Image
     const [campDetail, setCampDetail] = useState({}) //for all camp details
@@ -52,10 +56,13 @@ function DetailPage() {
 >>>>>>> 1e5bc91 ( api added dashboard)
 =======
     const [campAreaActivites, setCampActivities] = useState({})
-    const apiUrlForGetCampDetail = 'https://developer.nps.gov/api/v1/campgrounds?id=BC707FA3-F575-4734-8E62-34689982F615&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs'
-    const apiUrlFetchParkActivites = 'https://developer.nps.gov/api/v1/activities?parkCode=seki&api_key=ebkHAQqxYcIP2uGebz8ASYNVFfvte7BsrBhfhAvC'
 
+<<<<<<< HEAD
 >>>>>>> 76eec7d (Remove error regarding key and api implementation for activities and other details in detail screen)
+=======
+    const apiUrlForGetCampDetail = `https://developer.nps.gov/api/v1/campgrounds?id=${id}&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs`
+    const apiUrlFetchParkActivites = `https://developer.nps.gov/api/v1/activities?parkCode=${parkCode}&api_key=ebkHAQqxYcIP2uGebz8ASYNVFfvte7BsrBhfhAvC`
+>>>>>>> 0d93e1d (Booking campground and homepage dashboard with API)
 
     useEffect(() => {
         fetchData()
@@ -63,7 +70,10 @@ function DetailPage() {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0d93e1d (Booking campground and homepage dashboard with API)
     const fetchData = async () => {
         try {
             const getCampDetails = await fetch(apiUrlForGetCampDetail)
@@ -241,6 +251,24 @@ function DetailPage() {
     //     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     // };
 
+    const bookingHandler = (data) => {
+        // console.log('booking handler', data.userCount, data.startDate._d, data.endDate._d)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "user_id": 1,
+                "park_code": parkCode,
+                "camp_ground_id": id,
+                "users_count": data.userCount,
+                "start_date": data.startDate._d,
+                "end_date": data.endDate._d
+            })
+        };
+        fetch('/api/booking', requestOptions)
+            .then(response => response.json())
+    }
+
     if (!isLoaded) {
         return <div>Loading....</div>
     } else {
@@ -269,7 +297,7 @@ function DetailPage() {
                         </CCol>
                         {/* DatePicker for reservation */}
                         <CCol md={4}>
-                            <DatePicker fees={campDetail["fees"][0]["cost"]} />
+                            <DatePicker fees={campDetail["fees"][0]["cost"]} bookingClick={bookingHandler} />
                         </CCol>
                     </CRow>
                 </CContainer>
