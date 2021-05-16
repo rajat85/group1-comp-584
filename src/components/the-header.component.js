@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import {
   CHeader,
   CToggler,
@@ -15,8 +15,7 @@ import { clearMessage } from "../actions/message";
 import { history } from "../helpers/history";
 
 const TheHeader = (props) => {
-  const dispatch = useDispatch();
-  const { user: currentUser } = props;
+  const { user: currentUser, sidebarShow, dispatch } = props;
 
   const logOut =  function () {
     dispatch(logout());
@@ -29,17 +28,27 @@ const TheHeader = (props) => {
     return () => {};
   }, [dispatch]);
 
+  const toggleSidebar = () => {
+    const val = [true, 'responsive'].includes(sidebarShow) ? false : 'responsive';
+    dispatch({ type: 'set', sidebarShow: val });
+  };
+
+  const toggleSidebarMobile = () => {
+    const val = [false, 'responsive'].includes(sidebarShow) ? true : 'responsive';
+    dispatch({ type: 'set', sidebarShow: val });
+  };
+
   return (
     <CHeader withSubheader>
       <CToggler
         inHeader
         className="ml-md-3 d-lg-none"
-        onClick={() => {}}
+        onClick={toggleSidebarMobile}
       />
       <CToggler
         inHeader
         className="ml-3 d-md-down-none"
-        onClick={() => {}}
+        onClick={toggleSidebar}
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         <CIcon name="logo" height="48" alt="Logo"/>
@@ -67,8 +76,10 @@ const TheHeader = (props) => {
 
 const mapStateToProps = function (state) {
   const { user } = state.auth;
+  const { sidebarShow } = state.changeState;
   return {
     user,
+    sidebarShow,
   };
 };
 

@@ -11,6 +11,7 @@ import { logout } from './actions/auth';
 import { clearMessage } from './actions/message';
 import { history } from './helpers/history';
 const TheHeader = React.lazy(() => import('./components/the-header.component'));
+const TheSidebar = React.lazy(() => import('./components/the-sidebar.component'));
 const TheFooter = React.lazy(() => import('./components/the-footer.component'));
 const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
@@ -65,6 +66,7 @@ class App extends Component {
           <Switch>
             <Route exact path={["/", "/home"]} name="Home Page" render={props => (
               <div className="c-app c-default-layout">
+                <TheSidebar />
                 <div className="c-wrapper">
                   <TheHeader />
                   <div className="c-body">
@@ -79,6 +81,7 @@ class App extends Component {
 
             <Route exact path="/profile" name="Profile Page" render={props => (
               <div className="c-app c-default-layout">
+                <TheSidebar />
                 <div className="c-wrapper">
                   <TheHeader />
                   <div className="c-body">
@@ -103,6 +106,7 @@ class App extends Component {
             )} />
             <Route exact path="/detail" name="Detail Page" render={props => (
               <div className="c-app c-default-layout">
+                <TheSidebar />
                 <div className="c-wrapper">
                   <TheHeader />
                   <div className="c-body">
