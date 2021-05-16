@@ -3,7 +3,23 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './Datepicker.css';
+import { DatePicker } from "antd";
 
+import "antd/dist/antd.css"
+import moment from 'moment';
+const { RangePicker } = DatePicker;
+const format = "MM.DD.YYYY";
+const disabledDates = [
+    {
+        start: moment("23.02.2022", format),
+        end: moment("25.02.2022", format)
+    },
+
+    {
+        start: moment("15.03.2022", format),
+        end: moment("20.03.2022", format)
+    }
+];
 class Datepicker extends Component {
 
     constructor(props) {
@@ -11,9 +27,18 @@ class Datepicker extends Component {
         this.state = {
             startDate: null,
             endDate: null,
-            userCount: ''
+            userCount: '1',
+            disabledDates: []
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.onDateSelect = this.onDateSelect.bind(this)
+
+    }
+
+    onDateSelect(date, dateString) {
+        console.log(dateString);
+        this.setState({ startDate: dateString[0] })
+        this.setState({ endDate: dateString[1] })
     }
 
     handleSubmit(event) {
@@ -29,7 +54,7 @@ class Datepicker extends Component {
                     <span>per night</span>
                 </div>
                 <div className="picker_padding picker_border datepicker">
-                    <DateRangePicker
+                    {/* <DateRangePicker
                         startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                         endDate={this.state.endDate} // momentPropTypes.momentObj or null,
@@ -37,6 +62,23 @@ class Datepicker extends Component {
                         onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                        disabledDates={["06/24/2021", "06/28/2021", "06/02/2021", "06/23/2021"]}
+                    /> */}
+                    <RangePicker
+                        onChange={this.onDateSelect}
+                        defaultValue={[moment(), moment()]}
+                        disabledDate={(current) =>
+                            disabledDates.some(
+                                (date) =>
+                                    current &&
+                                    current < moment().endOf("day") ||
+                                    current.isBetween(
+                                        moment(date["start"], format),
+                                        moment(date["end"], format),
+                                        "day"
+                                    )
+                            )
+                        }
                     />
                 </div>
                 <div className="picker_padding picker_border">

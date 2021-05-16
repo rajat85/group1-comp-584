@@ -10,4 +10,5 @@ module.exports = function (app) {
     //     next();
     // });
     app.post("/api/booking", controller.booking);
+    app.get("/api/booking/:userId/:campId", controller.getbooking)
 };
