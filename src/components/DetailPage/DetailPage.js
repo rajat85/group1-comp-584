@@ -60,8 +60,8 @@ function DetailPage() {
             <CContainer fluid>
                 <CRow className="align-items-center">
                     <CCol>
-                        <div className='text-center'>
-                            <div className="spinner-border text-info text-center" role="status">
+                        <div className="d-flex justify-content-center">
+                            <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
                                 <span className="sr-only">Loading...</span>
                             </div>
                         </div>

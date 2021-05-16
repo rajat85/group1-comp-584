@@ -19,8 +19,10 @@ const Profile = React.lazy(() => import('./components/profile.component'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
 
 const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
+  <div className="d-flex justify-content-center">
+    <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
+      <span className="sr-only">Loading...</span>
+    </div>
   </div>
 );
 
