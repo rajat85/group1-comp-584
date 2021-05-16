@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { Card, Button } from "react-bootstrap";
+import { CContainer, CRow } from "@coreui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
-import { CContainer, CRow } from "@coreui/react";
+
 
 // const tutorialSteps = {
 //   label: "Joshua",
@@ -41,11 +43,10 @@ const getCampSiteData = (props) => {
   return campSitesData
 }
 
-export default function DashCard(props) {
+const Dashboard = function (props) {
   // const [activeStep, setActiveStep] = React.useState(0);
   const [isLoaded, setIsLoaded] = useState(false)
   const [campDetails, setCampDetail] = useState([{}]) //for all camp details
-
 
   // const handleNext = () => {
   //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -76,6 +77,9 @@ export default function DashCard(props) {
     }
   }
 
+  if (!props.isLoggedIn) {
+    return <Redirect to="/login" />;
+  }
 
   if (!isLoaded) {
     return <div>Loading....</div>
@@ -127,4 +131,14 @@ export default function DashCard(props) {
       </CContainer>
     );
   }
-}
+};
+
+const mapStateToProps = function (state) {
+  const { user, isLoggedIn } = state.auth;
+  return {
+    user,
+    isLoggedIn,
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);
