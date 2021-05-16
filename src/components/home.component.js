@@ -7,7 +7,15 @@ import { logout } from "../actions/auth";
 import { clearMessage } from "../actions/message";
 import { connect } from "react-redux";
 
-import { CContainer, CRow, CCol, CFade } from '@coreui/react';
+import {
+  CContainer,
+  CRow,
+  CCol,
+  CCard,
+  CCardBody,
+  CCardText,
+  CFade
+} from '@coreui/react';
 
 class Home extends Component {
   constructor(props) {
@@ -76,6 +84,35 @@ class Home extends Component {
                 <header className="jumbotron">
                   <h3>{this.state.content}</h3>
                 </header>
+              </CCol>
+            </CRow>
+            <CRow>
+              <CCol>
+                <h1>Find the best camping near you.</h1>
+                <h4>Book unique camping experiences on over <strong>300,000</strong></h4>
+                <h4>campgrounds, ranches, vineyards, public parks and more.</h4>
+              </CCol>
+            </CRow>
+
+            <CRow>
+              <CCol ClassName="test" md={12}>
+                <h3>Best camping</h3>
+              </CCol>
+            </CRow>
+
+            <CRow>
+              <CCol ClassName="test" md={3}>
+                <div className="card-group">
+                  <CCard style={{ width: '18rem' }}>
+                    <img class="card-img-top" src="https://cdn.glitch.com/488fb2dd-efac-4ee0-a6b7-60bedadb1c60%2Fwill-porada-DH5183gvKUg-unsplash.jpg?v=1612900479111" alt="Card image cap"/>
+                    <CCardBody>
+                      <title>Docking Bay 94</title>
+                      <h6 class="card-subtitle mb-2 text-muted">California The Overland Portal</h6>
+                      <CCardText>We're offering an off-driveway dry campsite for RVs, Skoolies, and trailers, all of which should be self-sufficient (BYO Toilet!). The Docking Bay accommodates 1 vehicle up to 30ft*. (Tow vehicle + camper) The Docking Bay includes a fire pit, picnic table, and a nature view within a residential.</CCardText>
+                      <CCardText><small class="text-muted">$20/night</small></CCardText>
+                    </CCardBody>
+                  </CCard>
+                </div>
               </CCol>
             </CRow>
             {/*  </CCardBody>*/}
