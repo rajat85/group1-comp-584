@@ -2,7 +2,6 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const createdAt = Date.now().toString();
     await queryInterface.bulkInsert('roles', [{
       id: 1,
       name: "user",

@@ -66,7 +66,7 @@ const TheHeader = (props) => {
             <CHeaderNavLink className="d-inline" to={"/profile"}>{currentUser.username}</CHeaderNavLink>
           </CHeaderNavItem>
           <CHeaderNavItem className="px-3">
-            <CHeaderNavLink onClick={logOut}>Logout</CHeaderNavLink>
+            <CHeaderNavLink onClick={logOut} to="/logout">Logout</CHeaderNavLink>
           </CHeaderNavItem>
         </CHeaderNav>
       )}
