@@ -6,10 +6,6 @@ import {
   CSidebarNav,
   CSidebarMinimizer,
   CSidebarNavItem,
-  CSidebarNavDivider,
-  CSidebarNavDropdown,
-  CCreateElement,
-  CSidebarNavTitle,
   CLink,
 } from '@coreui/react'
 
@@ -18,8 +14,6 @@ import CIcon from '@coreui/icons-react'
 import logos from "./campx-logo.png";
 import mobileLogos from "./campx-logo-mobile.png";
 
-// sidebar nav config
-import navigation from './_nav'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icon from "@fortawesome/free-solid-svg-icons";
 

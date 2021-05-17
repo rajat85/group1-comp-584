@@ -69,7 +69,7 @@ const Dashboard = function (props) {
   } else {
     return (
       <CContainer>
-        <CRow>
+        <CRow className={"justify-content-center"}>
           {campDetails.map((campDetail, index) => (
             <Card className="cardDesign" onClick={() => handleClick(campDetail.id, campDetail.parkCode)} key={index}>
               <Card.Img
