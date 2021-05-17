@@ -20,26 +20,16 @@
 }
 
 .bottomText {
-  text-align: right;
-  margin-bottom: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
 }
 
-.btnAlignPrevious {
-  width: 30px;
-  padding-top: 100px;
-  padding-left: 40px;
-}
-
-.btnAlignNext {
-  width: 30px;
-  padding-top: 100px;
-  padding-left: 320px;
-}
-
-.btnColor {
-  color: white;
+.btnShowDetail{
+  color: #39c282; 
   font-weight: bold;
-  font-size: xx-large;
+  font-size: 15px;
 }
 
+.btnShowDetail:hover{
+  color: #39c282 !important;
+  text-decoration: none;
+}
