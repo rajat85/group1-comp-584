@@ -30,3 +30,23 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.c-sidebar .c-sidebar-brand, .c-sidebar .c-sidebar-header {
+  background-color: #ffffff;
+}
+.c-sidebar .c-sidebar-minimizer {
+  background-color: #ebedef;
+}
+
+.sidebar-footer {
+  height: 50px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  list-style-type: none;
+  padding-bottom: 2.5em;
+}
+.c-sidebar-minimized .sidebar-footer {
+  bottom: 53px;
+  padding-bottom: 2.5em;
+}

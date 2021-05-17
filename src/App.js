@@ -15,7 +15,7 @@ const TheSidebar = React.lazy(() => import('./components/the-sidebar.component')
 const TheFooter = React.lazy(() => import('./components/the-footer.component'));
 const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
-const Home = React.lazy(() => import('./components/home.component'));
+const Logout = React.lazy(() => import('./components/logout.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
 const Dashboard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
@@ -106,6 +106,11 @@ class App extends Component {
                 <Register {...props} />
               </CFade>
             )} />
+            <Route exact path="/logout" name="Register Page" render={props => (
+              <CFade>
+                <Logout {...props} />
+              </CFade>
+            )} />
             {/* <Route exact path="/dashboard" name="dashboard Page" render={props => (
               <div className="c-app c-default-layout">
                 <div className="c-wrapper">
@@ -135,6 +140,7 @@ class App extends Component {
             )} />
             <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
             <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
+            <Route exact path="/logout" name="Logout Page" render={props => <Logout {...props} />}  />
           </Switch>
         </Suspense>
       </Router>

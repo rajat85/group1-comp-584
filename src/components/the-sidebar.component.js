@@ -1,23 +1,27 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  CCreateElement,
   CSidebar,
   CSidebarBrand,
   CSidebarNav,
-  CSidebarNavDivider,
-  CSidebarNavTitle,
   CSidebarMinimizer,
-  CSidebarNavDropdown,
   CSidebarNavItem,
+  CSidebarNavDivider,
+  CSidebarNavDropdown,
+  CCreateElement,
+  CSidebarNavTitle,
+  CLink,
 } from '@coreui/react'
 
 import CIcon from '@coreui/icons-react'
 
-import logos from "./CampX-logo.png";
+import logos from "./campx-logo.png";
+import mobileLogos from "./campx-logo-mobile.png";
 
 // sidebar nav config
 import navigation from './_nav'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icon from "@fortawesome/free-solid-svg-icons";
 
 const TheSidebar = () => {
   const dispatch = useDispatch();
@@ -31,28 +35,51 @@ const TheSidebar = () => {
       <CSidebarBrand className="d-md-down-none" to="/">
         <CIcon
           className="c-sidebar-brand-full"
-          name="CampX-logo"
+          name="campx-logo"
           src={logos}
           height={35}
         />
         <CIcon
           className="c-sidebar-brand-minimized"
-          name="CampX-logo"
-          src={logos}
+          name="campx-logo-mobile"
+          src={mobileLogos}
           height={35}
         />
       </CSidebarBrand>
       <CSidebarNav>
-
-        <CCreateElement
-          items={navigation}
-          components={{
-            CSidebarNavDivider,
-            CSidebarNavDropdown,
-            CSidebarNavItem,
-            CSidebarNavTitle
-          }}
-        />
+        <CSidebarNavItem>
+          <CLink
+            className='c-sidebar-nav-link'
+            to='/dashboard'
+            exact='true'
+            activeClassName="c-active"
+          >
+            <FontAwesomeIcon pull="left" icon={Icon.faTachometerAlt} className={'c-sidebar-nav-icon'} />
+            Dashboard
+          </CLink>
+        </CSidebarNavItem>
+        <CSidebarNavItem>
+          <CLink
+            className='c-sidebar-nav-link'
+            to='/profile'
+            exact='true'
+            activeClassName="c-active"
+          >
+            <FontAwesomeIcon pull="left" icon={Icon.faUserAlt} className={'c-sidebar-nav-icon'} />
+            Profile
+          </CLink>
+        </CSidebarNavItem>
+        <CSidebarNavItem className={"sidebar-footer"}>
+          <CLink
+            className='c-sidebar-nav-link'
+            to='/logout'
+            exact='true'
+            activeClassName="c-active"
+          >
+            <FontAwesomeIcon pull="left" icon={Icon.faSignOutAlt} className={'c-sidebar-nav-icon'} />
+            Logout
+          </CLink>
+        </CSidebarNavItem>
       </CSidebarNav>
       <CSidebarMinimizer className="c-d-md-down-none"/>
     </CSidebar>
