@@ -17,11 +17,13 @@ const Login = React.lazy(() => import('./components/login.component'));
 const Register = React.lazy(() => import('./components/register.component'));
 const Home = React.lazy(() => import('./components/home.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
+const Dashboard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
+
 
 const loading = (
   <div className="d-flex justify-content-center">
-    <div className="spinner-grow" style={{width: '3rem', height: '3rem'}} role="status">
+    <div className="spinner-grow" style={{ width: '3rem', height: '3rem' }} role="status">
       <span className="sr-only">Loading...</span>
     </div>
   </div>
@@ -64,14 +66,14 @@ class App extends Component {
       <Router history={history}>
         <Suspense fallback={loading}>
           <Switch>
-            <Route exact path={["/", "/home"]} name="Home Page" render={props => (
+            <Route exact path={["/", "/dashboard"]} name="Home Page" render={props => (
               <div className="c-app c-default-layout">
                 <TheSidebar />
                 <div className="c-wrapper">
                   <TheHeader />
                   <div className="c-body">
                     <CFade>
-                      <Home {...props} />
+                      <Dashboard {...props} />
                     </CFade>
                   </div>
                   <TheFooter />
@@ -104,6 +106,19 @@ class App extends Component {
                 <Register {...props} />
               </CFade>
             )} />
+            {/* <Route exact path="/dashboard" name="dashboard Page" render={props => (
+              <div className="c-app c-default-layout">
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <Dashboard {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} /> */}
             <Route exact path="/detail" name="Detail Page" render={props => (
               <div className="c-app c-default-layout">
                 <TheSidebar />
@@ -118,6 +133,8 @@ class App extends Component {
                 </div>
               </div>
             )} />
+            <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
+            <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
           </Switch>
         </Suspense>
       </Router>
