@@ -33,9 +33,12 @@ label {
 
 .c-sidebar .c-sidebar-brand, .c-sidebar .c-sidebar-header {
   background-color: #ffffff;
+  border-right: 1px solid #c5c5c5;
 }
+
 .c-sidebar .c-sidebar-minimizer {
   background-color: #ebedef;
+  border-right: 1px solid #c5c5c5;
 }
 
 .sidebar-footer {
@@ -46,7 +49,9 @@ label {
   list-style-type: none;
   padding-bottom: 2.5em;
 }
+
 .c-sidebar-minimized .sidebar-footer {
   bottom: 53px;
   padding-bottom: 2.5em;
 }
+
