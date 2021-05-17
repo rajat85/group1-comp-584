@@ -56,7 +56,7 @@ const TheHeader = (props) => {
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/home">Dashboard</CHeaderNavLink>
+          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
       {currentUser && (

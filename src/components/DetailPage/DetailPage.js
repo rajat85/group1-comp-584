@@ -84,8 +84,8 @@ function DetailPage(props) {
               <Swiper slidesPerView={1} navigation={true} pagination={{
                   "clickable": true
               }} className="mySwiper">
-                  {images.map((image) => {
-                      return <SwiperSlide><img src={image} /></SwiperSlide>;
+                  {images.map((image, index) => {
+                      return <SwiperSlide key={`swiper-${index}`}><img src={image} /></SwiperSlide>;
                   })}
               </Swiper>
               <CContainer>
