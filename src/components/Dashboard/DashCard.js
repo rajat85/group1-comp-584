@@ -2,20 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { CContainer, CRow } from "@coreui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
 
-
-// const tutorialSteps = {
-//   label: "Joshua",
-//   imgPath: [
-//     "https://hipcamp-res.cloudinary.com/image/upload/c_fill,f_auto,g_auto:subject,h_400,q_60,w_780/v1618334259/campground-photos/cbqtudbdoixiiyfalshi.jpg",
-//     "https://hipcamp-res.cloudinary.com/image/upload/c_fill,f_auto,g_auto:subject,h_400,q_60,w_780/v1618335482/campground-photos/ltlfvm4hiyhgcwuvpi0p.jpg",
-//     "https://hipcamp-res.cloudinary.com/image/upload/c_fill,f_auto,g_auto:subject,h_400,q_60,w_780/v1618335556/campground-photos/jbgu5minkwrzgd2scr6x.jpg",
-//   ],
-// };
 
 const getImageList = (props) => {
   var imageList = []
@@ -24,6 +15,7 @@ const getImageList = (props) => {
   })
   return imageList
 }
+
 const getCampSiteData = (props) => {
   var campSitesData = []
   props.map(campSiteData => {
@@ -44,17 +36,8 @@ const getCampSiteData = (props) => {
 }
 
 const Dashboard = function (props) {
-  // const [activeStep, setActiveStep] = React.useState(0);
   const [isLoaded, setIsLoaded] = useState(false)
   const [campDetails, setCampDetail] = useState([{}]) //for all camp details
-
-  // const handleNext = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // };
-
-  // const handleBack = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  // };
 
   const handleClick = (id, parkCode) => {
     props.history.push({ pathname: '/detail', state: { id: id, parkCode: parkCode } })
@@ -94,28 +77,6 @@ const Dashboard = function (props) {
                 src={campDetail.images[0]}
                 alt="imagePark"
               />
-              {/* <Card.ImgOverlay className="btnAlignNext">
-                <Button
-                  variant="Light"
-                  size="sm"
-                  className="btnColor"
-                  onClick={handleNext}
-                  disabled={activeStep === campDetail.images.length - 1}
-                >
-                  {">"}
-                </Button>
-              </Card.ImgOverlay> */}
-              {/* <Card.ImgOverlay className="btnAlignPrevious">
-                <Button
-                  variant="Light"
-                  size="sm"
-                  className="btnColor"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                >
-                  {"<"}
-                </Button>
-              </Card.ImgOverlay> */}
               <Card.Body>
                 <Card.Title>{campDetail.name}</Card.Title>
                 <hr />

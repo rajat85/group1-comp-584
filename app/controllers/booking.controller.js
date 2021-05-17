@@ -19,31 +19,3 @@ exports.booking = (req, res) => {
             res.status(500).send({ message: err.message });
         });
 }
-exports.getbooking = (req, res) => {
-    console.log(req.params);
-    Booking.findAll({
-        where: {
-            user_id: req.params.userId,
-            camp_ground_id: req.params.campId
-        }
-    }).then(booking => {
-        resdates = []
-        if (booking) {
-
-            booking.map(book => {
-                resdates.push({
-                    start: moment(book.start_date, "MM.DD.YYYY"),
-                    end: moment(book.end_date, "MM.DD.YYYY")
-                })
-
-            })
-            return res.status(200).send({ 'resdates': resdates });
-        }
-        else {
-            res.status(200).send({
-                'resdates': resdates
-            });
-        }
-    })
-
-}

@@ -1,6 +1,6 @@
+import React from 'react'
 import { CCol, CContainer, CRow } from '@coreui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
 import './SmallCard.css'
 
 export default function SmallCard(props) {
