@@ -19,6 +19,7 @@ const Logout = React.lazy(() => import('./components/logout.component'));
 const Profile = React.lazy(() => import('./components/profile.component'));
 const Dashboard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
+const AboutUs = React.lazy(() => import('./components/AboutUs/AboutUs'));
 
 
 const loading = (
@@ -138,6 +139,23 @@ class App extends Component {
                 </div>
               </div>
             )} />
+
+
+            <Route exact path="/about" name="AboutUs" render={props => (
+              <div className="c-app c-default-layout">
+                <TheSidebar />
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <AboutUs {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} />
+
             <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
             <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
             <Route exact path="/logout" name="Logout Page" render={props => <Logout {...props} />}  />
