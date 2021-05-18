@@ -41,6 +41,10 @@ label {
   border-right: 1px solid #c5c5c5;
 }
 
+.c-sidebar .c-sidebar-minimizer:hover {
+  border-right: inherit;
+}
+
 .sidebar-footer {
   height: 50px;
   position: absolute;
