@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { Card } from "react-bootstrap";
-import { CContainer, CRow } from "@coreui/react";
+import { Card, Button } from "react-bootstrap";
+import { CContainer, CRow, CCol } from "@coreui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
 
@@ -71,7 +71,7 @@ const Dashboard = function (props) {
       <CContainer>
         <CRow className={"justify-content-center"}>
           {campDetails.map((campDetail, index) => (
-            <Card className="cardDesign" onClick={() => handleClick(campDetail.id, campDetail.parkCode)} key={index}>
+            <Card className="cardDesign" key={index}>
               <Card.Img
                 className="img"
                 src={campDetail.images[0]}
@@ -84,10 +84,17 @@ const Dashboard = function (props) {
                   {campDetail.description}
                 </Card.Text>
               </Card.Body>
-              <Card.Title className="bottomText">{campDetail.fees.split('.')[0]}$</Card.Title>
+              <CRow>
+                <CCol md={7}>
+                  <Card.Title className="bottomText">{campDetail.fees.split('.')[0]}$</Card.Title>
+                </CCol>
+                <CCol md={5}>
+                  <Button variant="link" className="btnShowDetail" onClick={() => handleClick(campDetail.id, campDetail.parkCode)}>Show Details</Button>
+                </CCol>
+              </CRow>
             </Card>
-          ))}
-
+          ))
+          }
         </CRow>
       </CContainer>
     );
