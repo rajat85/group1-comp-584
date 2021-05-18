@@ -89,7 +89,7 @@ const Dashboard = function (props) {
                   <Card.Title className="bottomText">{campDetail.fees.split('.')[0]}$</Card.Title>
                 </CCol>
                 <CCol md={5}>
-                  <Button variant="link" className="btnShowDetail" onClick={() => handleClick(campDetail.id, campDetail.parkCode)}>Show Detail</Button>
+                  <Button variant="link" className="btnShowDetail" onClick={() => handleClick(campDetail.id, campDetail.parkCode)}>Show Details</Button>
                 </CCol>
               </CRow>
             </Card>
