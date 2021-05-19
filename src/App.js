@@ -21,7 +21,6 @@ const Dashboard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
 const AboutUs = React.lazy(() => import('./components/AboutUs/AboutUs'));
 
-
 const loading = (
   <div className="d-flex justify-content-center">
     <div className="spinner-grow" style={{ width: '3rem', height: '3rem' }} role="status">
