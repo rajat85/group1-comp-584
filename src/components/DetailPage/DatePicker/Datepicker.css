@@ -23,9 +23,9 @@ aside{
     font-weight: bold;
     margin: 10px
 }
-.button:hover {
-    background-color:#ffff;
-    color: #39c282;    
+.button:disabled {
+    background-color:#607D8B;
+    color: whitesmoke;    
 }
 .picker_padding {
     padding: 15px;
