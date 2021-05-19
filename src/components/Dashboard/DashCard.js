@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
+import Dexie from 'dexie';
+import { useLiveQuery } from 'dexie-react-hooks';
 import { Card, Button } from "react-bootstrap";
 import { CContainer, CRow, CCol } from "@coreui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
 import Loading from '../loading.component';
+import { search } from '../../actions/search';
 
+const db = new Dexie('ParkList');
+db.version(1).stores(
+  { items: "++id, stateCode, name, data" }
+);
 
 const getImageList = (props) => {
-  var imageList = []
-  props.map(image => {
-    imageList.push(image['url'])
-  })
-  return imageList
-}
+  return props.map(image => (image['url']));
+};
 
-const getCampSiteData = (props) => {
-  var campSitesData = []
-  props.map(campSiteData => {
+const getCampSiteData = (stateCode = 'ca', props = [], searchTerm = '') => {
+  const campSitesData = [];
+  props.forEach(campSiteData => {
+    const name = campSiteData['name'];
+    db.items.add({
+      stateCode,
+      name,
+      data: campSiteData
+    });
     const images = getImageList(campSiteData["images"])
     campSitesData.push(
       {
@@ -31,8 +41,8 @@ const getCampSiteData = (props) => {
       }
     )
 
-  })
-  return campSitesData
+  });
+  return campSitesData;
 }
 
 const Dashboard = function (props) {
@@ -43,16 +53,21 @@ const Dashboard = function (props) {
     props.history.push({ pathname: '/detail', state: { id: id, parkCode: parkCode } })
   };
 
+  const handleSearch = (e) => {
+    const { value } = e;
+    props.search({ searchTerm: value });
+  };
+
   useEffect(() => {
     fetchData()
-  }, [])
+  }, []);
 
   const fetchData = async () => {
     try {
       const request = await fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=ca&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs&limit=20');
       const result = await request.json();
       const campSitesData = result["data"];
-      setCampDetail(getCampSiteData(campSitesData));
+      setCampDetail(getCampSiteData('ca', campSitesData, ''));
       setIsLoaded(true);
     } catch (err) {
 
@@ -68,6 +83,20 @@ const Dashboard = function (props) {
   } else {
     return (
       <CContainer>
+        <CRow className={"justify-content-center"}>
+          <CCol md={8}>
+            <Card>
+              <Card.Body>
+                <div className="input-group">
+                  <input type="text" id="search" className="form-control" placeholder="Search for..." aria-label="Search for..." />
+                  <span className="input-group-btn">
+                    <button className="btn btn-secondary" type="button" onClick={() => handleSearch(document.getElementById('search'))}>Go!</button>
+                  </span>
+                </div>
+              </Card.Body>
+            </Card>
+          </CCol>
+        </CRow>
         <CRow className={"justify-content-center"}>
           {campDetails.map((campDetail, index) => (
             <Card className="cardDesign" key={index}>
@@ -102,10 +131,19 @@ const Dashboard = function (props) {
 
 const mapStateToProps = function (state) {
   const { user, isLoggedIn } = state.auth;
+  const { searchTerm } = state.search;
   return {
     user,
     isLoggedIn,
+    searchTerm,
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch,
+    ...bindActionCreators({ search }, dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
