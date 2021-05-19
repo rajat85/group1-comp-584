@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,6 +5,7 @@ import { Card, Button } from "react-bootstrap";
 import { CContainer, CRow, CCol } from "@coreui/react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
+import Loading from '../loading.component';
 
 
 const getImageList = (props) => {
@@ -49,23 +49,22 @@ const Dashboard = function (props) {
 
   const fetchData = async () => {
     try {
-      const request = await fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=ca&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs&limit=20')
+      const request = await fetch('https://developer.nps.gov/api/v1/campgrounds?stateCode=ca&api_key=T3MkOlIozZmqR97FAoE52uxAtlfa2bsdZPn1pwMs&limit=20');
       const result = await request.json();
-      var campSitesData = result["data"]
-      console.log(campSitesData)
-      setCampDetail(getCampSiteData(campSitesData))
-      setIsLoaded(true)
+      const campSitesData = result["data"];
+      setCampDetail(getCampSiteData(campSitesData));
+      setIsLoaded(true);
     } catch (err) {
 
     }
-  }
+  };
 
   if (!props.isLoggedIn) {
     return <Redirect to="/login" />;
   }
 
   if (!isLoaded) {
-    return <div>Loading....</div>
+    return <Loading />;
   } else {
     return (
       <CContainer>
