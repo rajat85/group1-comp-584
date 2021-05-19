@@ -1,8 +1,4 @@
-
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { Card } from "react-bootstrap";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -18,7 +14,7 @@ import {
   CButton
 } from '@coreui/react';
 
-function AboutUs(props) {
+function AboutUs() {
 
     return (
       <main className="c-main">

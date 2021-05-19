@@ -45,7 +45,7 @@ const TheSidebar = () => {
           <CLink
             className='c-sidebar-nav-link'
             to='/dashboard'
-            exact='true'
+            exact={true}
             activeClassName="c-active"
           >
             <FontAwesomeIcon pull="left" icon={Icon.faTachometerAlt} className={'c-sidebar-nav-icon'} />
@@ -56,7 +56,7 @@ const TheSidebar = () => {
           <CLink
             className='c-sidebar-nav-link'
             to='/profile'
-            exact='true'
+            exact={true}
             activeClassName="c-active"
           >
             <FontAwesomeIcon pull="left" icon={Icon.faUserAlt} className={'c-sidebar-nav-icon'} />
@@ -67,7 +67,7 @@ const TheSidebar = () => {
           <CLink
             className='c-sidebar-nav-link'
             to='/about'
-            exact='true'
+            exact={true}
             activeClassName="c-active"
           >
             <FontAwesomeIcon pull="left" icon={Icon.faInfoCircle} className={'c-sidebar-nav-icon'} />
@@ -78,7 +78,7 @@ const TheSidebar = () => {
           <CLink
             className='c-sidebar-nav-link'
             to='/logout'
-            exact='true'
+            exact={true}
             activeClassName="c-active"
           >
             <FontAwesomeIcon pull="left" icon={Icon.faSignOutAlt} className={'c-sidebar-nav-icon'} />
