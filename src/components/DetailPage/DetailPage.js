@@ -1,4 +1,4 @@
-import { CContainer, CCol, CRow, CCard, CCardHeader, CCardBody, CListGroup, CListGroupItem } from "@coreui/react";
+import { CContainer, CCol, CRow, CCard, CCardHeader, CCardBody, CListGroup, CListGroupItem, CAlert } from "@coreui/react";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -31,6 +31,8 @@ const DetailPage = function (props) {
     const parkCode = QueryString.parse(props.location.search).park_code;
     const campgroud_id = props.match.params.id
     const [isLoaded, setIsLoaded] = useState(false);
+    const [isBooking, setBookingFlag] = useState();
+    const [isSuccessBooking, setSuccessBooking] = useState(false);
     const [images, setImages] = useState([]); //for Image
     const [campDetail, setCampDetail] = useState({}); //for all camp details
     const [campSiteArea, setCampSiteArea] = useState({}); //handle the state for camsite Area
@@ -50,7 +52,6 @@ const DetailPage = function (props) {
             const getCampDetails = await fetch(apiUrlForGetCampDetail)
             const result = await getCampDetails.json();
             var campSiteData = result["data"][0]
-            console.log('result', result)
             setCampDetail(campSiteData)
             setImages(getImageList(campSiteData["images"]))
             setCampSiteArea(getCamsiteDetail(campSiteData["campsites"]))
@@ -69,6 +70,7 @@ const DetailPage = function (props) {
         if (!user) {
             return <Redirect to="/login" />;
         }
+        setBookingFlag(true)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -81,8 +83,23 @@ const DetailPage = function (props) {
                 "end_date": data.endDate
             })
         };
-        fetch('/api/booking', requestOptions)
-            .then(response => response.json())
+        // fetch('/api/booking', requestOptions)
+        //     .then(response => response.json())
+        fetch('/api/booking', requestOptions).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
+            .then((responseJson) => {
+                setBookingFlag(false)
+                setSuccessBooking(true)
+            })
+            .catch((error) => {
+                setBookingFlag(false)
+                console.log(error)
+            });
     }
 
     if (!isLoaded) {
@@ -120,7 +137,12 @@ const DetailPage = function (props) {
                     </CCol>
                     {/* DatePicker for reservation */}
                     <CCol md={4}>
-                        <DatePicker fees={campDetail["fees"][0]["cost"]} bookingClick={bookingHandler} />
+                        <DatePicker fees={campDetail["fees"][0]["cost"]} bookingClick={bookingHandler} booking={isBooking} />
+                        {isSuccessBooking &&
+                            <CAlert color="primary" style={{ marginTop: 10 }}>
+                                Your booking is successfully done.
+                            </CAlert>
+                        }
                     </CCol>
                 </CRow>
             </CContainer>
