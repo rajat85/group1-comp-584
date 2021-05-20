@@ -109,7 +109,7 @@ const DetailPage = function (props) {
     return (
         <div className="camp_site_content">
             {/* Imagesetup */}
-            <Swiper slidesPerView={1} navigation={true} pagination={{
+            <Swiper slidesPerView={1} navigation={true} autoHeight={true} pagination={{
                 "clickable": true
             }} className="mySwiper">
                 {images.map((image, index) => {

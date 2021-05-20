@@ -34,7 +34,10 @@ const TheHeader = (props) => {
             Do you really want to logout?
           </CModalBody>
           <CModalFooter>
-            <CButton color="primary" onClick={() => dispatch(logout())}>Log me out!</CButton>{' '}
+            <CButton color="primary" onClick={() => {
+              dispatch(logout());
+              setShowModal(false);
+            }}>Log me out!</CButton>{' '}
             <CButton
               color="secondary"
               onClick={() => setShowModal(false)}
@@ -96,6 +99,16 @@ const TheHeader = (props) => {
             </CHeaderNavItem>
             <CHeaderNavItem className="px-3">
               <CHeaderNavLink onClick={logOut} to="/logout">Logout</CHeaderNavLink>
+            </CHeaderNavItem>
+          </CHeaderNav>
+        )}
+        {!currentUser && (
+          <CHeaderNav className="px-3">
+            <CHeaderNavItem className="px-3">
+              <CHeaderNavLink className="d-inline" to={"/login"}>Login</CHeaderNavLink>
+            </CHeaderNavItem>
+            <CHeaderNavItem className="px-3">
+              <CHeaderNavLink to="/register">Register</CHeaderNavLink>
             </CHeaderNavItem>
           </CHeaderNav>
         )}
