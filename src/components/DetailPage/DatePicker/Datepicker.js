@@ -10,8 +10,8 @@ class Datepicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: null,
-            endDate: null,
+            startDate: moment(),
+            endDate: moment(),
             userCount: '1',
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,9 +19,13 @@ class Datepicker extends Component {
     }
 
     onDateSelect(dateString) {
-        console.log(dateString);
-        this.setState({ startDate: dateString[0] })
-        this.setState({ endDate: dateString[1] })
+        if (dateString !== null) {
+            this.setState({ startDate: dateString[0] })
+            this.setState({ endDate: dateString[1] })
+        } else {
+            this.setState({ startDate: moment() })
+            this.setState({ endDate: moment() })
+        }
     }
 
     handleSubmit(event) {
@@ -39,9 +43,10 @@ class Datepicker extends Component {
                 <div className="picker_padding picker_border datepicker">
                     <RangePicker
                         onChange={this.onDateSelect}
-                        defaultValue={[moment(), moment()]}
+                        appearance="default"
+                        placeholder={["Check In", 'Check Out']}
                         disabledDate={(current) =>
-                            current && current < moment().endOf('day')
+                            current && current < moment().startOf('day')
                         }
                     />
                 </div>
@@ -67,7 +72,7 @@ class Datepicker extends Component {
                         type="submit"
                         value="Request to book"
                         onClick={this.handleSubmit}
-                        disabled={this.state.startDate === this.state.endDate}
+                        disabled={this.state.startDate.isSame(this.state.endDate)}
                     />
                 </div>
             </aside>
