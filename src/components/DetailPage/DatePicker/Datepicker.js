@@ -15,13 +15,11 @@ class Datepicker extends Component {
             endDate: null,
             userCount: '1',
         }
-
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onDateSelect = this.onDateSelect.bind(this)
-
     }
 
-    onDateSelect(date, dateString) {
+    onDateSelect(dateString) {
         console.log(dateString);
         this.setState({ startDate: dateString[0] })
         this.setState({ endDate: dateString[1] })
@@ -66,7 +64,12 @@ class Datepicker extends Component {
                     </form>
                 </div>
                 <div className="picker_border">
-                    <input className="button" type="submit" value="Request to book" onClick={this.handleSubmit} />
+                    <input className="button"
+                        type="submit"
+                        value="Request to book"
+                        onClick={this.handleSubmit}
+                        disabled={this.state.startDate === this.state.endDate}
+                    />
                 </div>
             </aside>
         );

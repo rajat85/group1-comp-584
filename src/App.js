@@ -124,7 +124,7 @@ class App extends Component {
                 </div>
               </div>
             )} /> */}
-            <Route exact path="/detail" name="Detail Page" render={props => (
+            <Route exact path="/detail/:id" name="Detail Page" render={props => (
               <div className="c-app c-default-layout">
                 <TheSidebar />
                 <div className="c-wrapper">
@@ -157,7 +157,7 @@ class App extends Component {
 
             <Route exact path="/login" name="Login Page" render={props => <Login {...props} />} />
             <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
-            <Route exact path="/logout" name="Logout Page" render={props => <Logout {...props} />}  />
+            <Route exact path="/logout" name="Logout Page" render={props => <Logout {...props} />} />
           </Switch>
         </Suspense>
       </Router>

@@ -50,7 +50,7 @@ const Dashboard = function (props) {
   const [campDetails, setCampDetail] = useState([{}]) //for all camp details
 
   const handleClick = (id, parkCode) => {
-    props.history.push({ pathname: '/detail', state: { id: id, parkCode: parkCode } })
+    props.history.push({ pathname: `/detail/${id}`, search: `?park_code=${parkCode}` })
   };
 
   const handleSearch = (e) => {
