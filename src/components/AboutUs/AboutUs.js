@@ -1,27 +1,20 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
 import {
   CContainer,
   CRow,
   CCol,
-  CCard,
-  CCardBody,
-  CCardText,
-  CFade,
   CPopover,
   CButton
 } from '@coreui/react';
 
-function AboutUs() {
-
+const AboutUs = () => {
     return (
       <main className="c-main">
         <CContainer fluid>
         <div className="row justify-content-md-center">
           <CCol md={10}>
-            <img src="https://cdn.glitch.com/8f1cca0c-cc88-4087-a65a-f249b3c73864%2Fcamping-about-us.jpeg?v=1621293774497" class="img-fluid" alt="Responsive image"/>
+            <img src="https://cdn.glitch.com/8f1cca0c-cc88-4087-a65a-f249b3c73864%2Fcamping-about-us.jpeg?v=1621293774497" className="img-fluid" alt="About Us" />
           </CCol>
         </div>
 
@@ -103,4 +96,4 @@ function AboutUs() {
     );
 };
 
-export default AboutUs
+export default React.memo(AboutUs);
