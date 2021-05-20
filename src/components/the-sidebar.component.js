@@ -74,6 +74,19 @@ const TheSidebar = () => {
             About Us
           </CLink>
         </CSidebarNavItem>
+
+        <CSidebarNavItem>
+          <CLink
+            className='c-sidebar-nav-link'
+            to='/contact'
+            exact={true}
+            activeClassName="c-active"
+          >
+            <FontAwesomeIcon pull="left" icon={Icon.faAddressCard} className={'c-sidebar-nav-icon'} />
+            Contact Us
+          </CLink>
+        </CSidebarNavItem>
+
         <CSidebarNavItem className={"sidebar-footer"}>
           <CLink
             className='c-sidebar-nav-link'

@@ -20,6 +20,7 @@ const Profile = React.lazy(() => import('./components/profile.component'));
 const Dashboard = React.lazy(() => import('./components/Dashboard/DashCard'));
 const DetailPage = React.lazy(() => import('./components/DetailPage/DetailPage'));
 const AboutUs = React.lazy(() => import('./components/AboutUs/AboutUs'));
+const Contact = React.lazy(() => import('./components/Contact/Contact'));
 
 const loading = (
   <div className="d-flex justify-content-center">
@@ -148,6 +149,21 @@ class App extends Component {
                   <div className="c-body">
                     <CFade>
                       <AboutUs {...props} />
+                    </CFade>
+                  </div>
+                  <TheFooter />
+                </div>
+              </div>
+            )} />
+
+            <Route exact path="/contact" name="Contact" render={props => (
+              <div className="c-app c-default-layout">
+                <TheSidebar />
+                <div className="c-wrapper">
+                  <TheHeader />
+                  <div className="c-body">
+                    <CFade>
+                      <Contact {...props} />
                     </CFade>
                   </div>
                   <TheFooter />
