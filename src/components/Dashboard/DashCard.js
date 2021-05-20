@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { connect } from "react-redux";
 import Dexie from 'dexie';
-import { useLiveQuery } from 'dexie-react-hooks';
+import _ from 'lodash';
 import { Card, Button } from "react-bootstrap";
 import { CContainer, CRow, CCol } from "@coreui/react";
+import { Input, Space } from "antd";
+import 'antd/dist/antd.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
 import Loading from '../loading.component';
 import { search } from '../../actions/search';
+const { Search } = Input;
 
 const db = new Dexie('ParkList');
 db.version(1).stores(
@@ -39,8 +42,7 @@ const getCampSiteData = (stateCode = 'ca', props = [], searchTerm = '') => {
         "fees": campSiteData['fees'][0]['cost'],
         'images': images
       }
-    )
-
+    );
   });
   return campSitesData;
 }
@@ -53,14 +55,24 @@ const Dashboard = function (props) {
     props.history.push({ pathname: `/detail/${id}`, search: `?park_code=${parkCode}` })
   };
 
-  const handleSearch = (e) => {
-    const { value } = e;
+  const handleSearch = (inputEl) => {
+    const { value } = inputEl;
     props.search({ searchTerm: value });
   };
 
   useEffect(() => {
     fetchData()
   }, []);
+
+  const filterItems = (campDetails, searchTerm) => {
+    if (!searchTerm) {
+      return campDetails;
+    }
+    return campDetails.filter(({ name, description }) => {
+      searchTerm = searchTerm.toLowerCase();
+      return name.toLowerCase().includes(searchTerm) || description.toLowerCase().includes(searchTerm);
+    });
+  };
 
   const fetchData = async () => {
     try {
@@ -70,7 +82,6 @@ const Dashboard = function (props) {
       setCampDetail(getCampSiteData('ca', campSitesData, ''));
       setIsLoaded(true);
     } catch (err) {
-
     }
   };
 
@@ -88,17 +99,22 @@ const Dashboard = function (props) {
             <Card>
               <Card.Body>
                 <div className="input-group">
-                  <input type="text" id="search" className="form-control" placeholder="Search for..." aria-label="Search for..." />
-                  <span className="input-group-btn">
-                    <button className="btn btn-secondary" type="button" onClick={() => handleSearch(document.getElementById('search'))}>Go!</button>
-                  </span>
+                  <Search
+                    placeholder="input search text"
+                    allowClear
+                    enterButton="Search"
+                    size="medium"
+                    id={'search'}
+                    onSearch={() => handleSearch(document.getElementById('search'))}
+                  />
                 </div>
               </Card.Body>
             </Card>
           </CCol>
         </CRow>
         <CRow className={"justify-content-center"}>
-          {campDetails.map((campDetail, index) => (
+
+          {filterItems(campDetails, _.trim(props.searchTerm)).map((campDetail, index) => (
             <Card className="cardDesign" key={index}>
               <Card.Img
                 className="img"
