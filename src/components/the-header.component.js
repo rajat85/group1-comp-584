@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
   CHeader,
@@ -7,6 +7,11 @@ import {
   CHeaderNav,
   CHeaderNavItem,
   CHeaderNavLink,
+  CModal,
+  CModalHeader,
+  CModalBody,
+  CModalFooter,
+  CButton,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { logout } from "../actions/auth";
@@ -16,9 +21,32 @@ import { history } from "../helpers/history";
 
 const TheHeader = (props) => {
   const { user: currentUser, sidebarShow, dispatch } = props;
+  const [ showModal, setShowModal ] = useState(false);
 
-  const logOut =  function () {
-    dispatch(logout());
+  const renderModal = () => {
+    return (
+        <CModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+        >
+          <CModalHeader closeButton>Logout</CModalHeader>
+          <CModalBody>
+            Do you really want to logout?
+          </CModalBody>
+          <CModalFooter>
+            <CButton color="primary" onClick={() => dispatch(logout())}>Log me out!</CButton>{' '}
+            <CButton
+              color="secondary"
+              onClick={() => setShowModal(false)}
+            >Cancel</CButton>
+          </CModalFooter>
+        </CModal>
+    );
+  };
+
+  const logOut =  function (e) {
+    e.preventDefault();
+    setShowModal(true);
   };
 
   useEffect(() => {
@@ -39,39 +67,42 @@ const TheHeader = (props) => {
   };
 
   return (
-    <CHeader withSubheader>
-      <CToggler
-        inHeader
-        className="ml-md-3 d-lg-none"
-        onClick={toggleSidebarMobile}
-      />
-      <CToggler
-        inHeader
-        className="ml-3 d-md-down-none"
-        onClick={toggleSidebar}
-      />
-      <CHeaderBrand className="mx-auto d-lg-none" to="/">
-        <CIcon name="logo" height="48" alt="Logo"/>
-      </CHeaderBrand>
+    <>
+      <CHeader withSubheader>
+        <CToggler
+          inHeader
+          className="ml-md-3 d-lg-none"
+          onClick={toggleSidebarMobile}
+        />
+        <CToggler
+          inHeader
+          className="ml-3 d-md-down-none"
+          onClick={toggleSidebar}
+        />
+        <CHeaderBrand className="mx-auto d-lg-none" to="/">
+          <CIcon name="logo" height="48" alt="Logo"/>
+        </CHeaderBrand>
 
-      <CHeaderNav className="d-md-down-none mr-auto">
-        <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
-        </CHeaderNavItem>
-      </CHeaderNav>
-      {currentUser && (
-        <CHeaderNav className="px-3">
-          <CHeaderNavItem className="px-3">
-            <div className="d-inline">Welcome</div>
-            <CHeaderNavLink className="d-inline" to={"/profile"}>{currentUser.username.toUpperCase()}!</CHeaderNavLink>
-          </CHeaderNavItem>
-          <CHeaderNavItem className="px-3">
-            <CHeaderNavLink onClick={logOut} to="/logout">Logout</CHeaderNavLink>
+        <CHeaderNav className="d-md-down-none mr-auto">
+          <CHeaderNavItem className="px-3" >
+            <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
           </CHeaderNavItem>
         </CHeaderNav>
-      )}
-    </CHeader>
-  )
+        {currentUser && (
+          <CHeaderNav className="px-3">
+            <CHeaderNavItem className="px-3">
+              <div className="d-inline">Welcome</div>
+              <CHeaderNavLink className="d-inline" to={"/profile"}>{currentUser.username.toUpperCase()}!</CHeaderNavLink>
+            </CHeaderNavItem>
+            <CHeaderNavItem className="px-3">
+              <CHeaderNavLink onClick={logOut} to="/logout">Logout</CHeaderNavLink>
+            </CHeaderNavItem>
+          </CHeaderNav>
+        )}
+      </CHeader>
+      {renderModal()}
+    </>
+  );
 };
 
 const mapStateToProps = function (state) {
