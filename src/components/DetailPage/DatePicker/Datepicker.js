@@ -34,6 +34,7 @@ class Datepicker extends Component {
     }
 
     render() {
+        console.log('loading', this.props.booking)
         return (
             <aside className="widget-container" id="widget-container">
                 <div className="picker_padding">
@@ -67,13 +68,22 @@ class Datepicker extends Component {
                         </select>
                     </form>
                 </div>
-                <div className="picker_border">
-                    <input className="button"
+                <div className="form-group picker_border">
+                    <button className="button"
+                        onClick={this.handleSubmit}
+                        disabled={this.state.startDate.isSame(this.state.endDate) || this.props.booking}>
+                        {this.props.booking && (
+                            <span className="spinner-border spinner-border-sm"></span>
+                        )}
+                        <span>Request to book</span>
+                    </button>
+                    {/* <input className="button"
                         type="submit"
                         value="Request to book"
                         onClick={this.handleSubmit}
-                        disabled={this.state.startDate.isSame(this.state.endDate)}
-                    />
+                        disabled={this.state.startDate.isSame(this.state.endDate)}>
+                      
+                    </input> */}
                 </div>
             </aside>
         );
