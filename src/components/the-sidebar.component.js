@@ -18,6 +18,7 @@ import { logout } from "../actions/auth";
 const TheSidebar = () => {
   const dispatch = useDispatch();
   const show = useSelector(state => state.changeState.sidebarShow);
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [ showModal, setShowModal ] = useState(false);
 
   const logOut =  function (e) {
@@ -36,7 +37,10 @@ const TheSidebar = () => {
           Do you really want to logout?
         </CModalBody>
         <CModalFooter>
-          <CButton color="primary" onClick={() => dispatch(logout())}>Log me out!</CButton>{' '}
+          <CButton color="primary" onClick={() => {
+            dispatch(logout());
+            setShowModal(false);
+          }}>Log me out!</CButton>{' '}
           <CButton
             color="secondary"
             onClick={() => setShowModal(false)}
@@ -114,7 +118,8 @@ const TheSidebar = () => {
           </CSidebarNavItem>
 
           <CSidebarNavItem className={"sidebar-footer"}>
-            <CLink
+            {isLoggedIn && (
+              <CLink
               className='c-sidebar-nav-link'
               to='/logout'
               exact={true}
@@ -123,7 +128,18 @@ const TheSidebar = () => {
             >
               <FontAwesomeIcon pull="left" icon={Icon.faSignOutAlt} className={'c-sidebar-nav-icon'} />
               Logout
-            </CLink>
+            </CLink>)}
+            {!isLoggedIn && (
+              <CLink
+                className='c-sidebar-nav-link'
+                to='/login'
+                exact={true}
+                activeClassName="c-active"
+              >
+                <FontAwesomeIcon pull="left" icon={Icon.faSignInAlt} className={'c-sidebar-nav-icon'} />
+                Login
+              </CLink>
+            )}
           </CSidebarNavItem>
         </CSidebarNav>
         <CSidebarMinimizer className="c-d-md-down-none"/>
