@@ -1,8 +1,5 @@
 import {
   SEARCHING,
-  SEARCH_SUCCESS,
-  SEARCH_FAIL,
-  SET_MESSAGE,
 } from "../actions/types";
 
 const initialState = {

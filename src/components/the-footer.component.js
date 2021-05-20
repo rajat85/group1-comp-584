@@ -5,7 +5,6 @@ const TheFooter = () => {
   return (
     <CFooter fixed={true}>
       <div>
-
         <span className="ml-1">&copy; 2021 <a href="/" target="_blank" rel="noopener noreferrer">CampX</a>, Inc. All rights reserved.</span>
       </div>
       <div className="mfs-auto">
@@ -14,6 +13,6 @@ const TheFooter = () => {
       </div>
     </CFooter>
   )
-}
+};
 
-export default React.memo(TheFooter)
+export default React.memo(TheFooter);

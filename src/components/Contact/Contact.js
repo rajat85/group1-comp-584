@@ -1,27 +1,14 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import  CIcon  from '@coreui/icons-react';
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icon from "@fortawesome/free-solid-svg-icons";
-
 import "./Contact.css";
-
 import {
   CContainer,
-  CRow,
   CCol,
-  CCard,
-  CCardBody,
-  CCardText,
-  CFade,
-  CPopover,
-  CButton
 } from '@coreui/react';
 
-
-function Contact() {
-
+const Contact = () => {
     return (
       <main className="c-main">
          <CContainer fluid>
@@ -48,7 +35,6 @@ function Contact() {
                             <FontAwesomeIcon pull="left" icon={Icon.faMapMarkerAlt} size='5x'/>
                           </div>
                           <br/>
-                           <a className="btn-floating blue accent-1"></a>
                            <p>18111 Nordhoff St,<br/> Northridge, CA 91330</p>
                         </div>
 
@@ -57,7 +43,7 @@ function Contact() {
                             <FontAwesomeIcon pull="left" icon={Icon.faPhone} size='5x'/>
                           </div>
                           <br/>
-                           <a className="btn-floating blue accent-1"><i className="fas fa-phone"></i></a>
+                           <a className="btn-floating blue accent-1" href="#"><i className="fas fa-phone"></i></a>
                            <p>+1 818 677 1200 <br/>8:00AM - 6:00PM</p>
                         </div>
                         <div className="col-md-4">
@@ -65,7 +51,7 @@ function Contact() {
                             <FontAwesomeIcon pull="left" icon={Icon.faEnvelope} size='5x'/>
                           </div>
                           <br/>
-                          <a className="btn-floating blue accent-1"><i className="fas fa-envelope"></i></a>
+                          <a className="btn-floating blue accent-1" href="#"><i className="fas fa-envelope"></i></a>
                           <p>info@gmail.com <br/> sale@gmail.com</p>
                         </div>
                      </div>
@@ -77,7 +63,7 @@ function Contact() {
                <div className="row">
                   <div className="col-lg-12">
                       <div id="map-container-google-11" className="z-depth-1-half map-container-6">
-                        <iframe  loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJj2ayD1SawoARVirZh_OSEPA&key=AIzaSyA9DlULtahqe530Lud9A_Lh5b8J5-ablnc"></iframe>
+                        <iframe loading="lazy" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJj2ayD1SawoARVirZh_OSEPA&key=AIzaSyA9DlULtahqe530Lud9A_Lh5b8J5-ablnc"></iframe>
                      </div>
                   </div>
                 </div>
@@ -87,4 +73,4 @@ function Contact() {
     );
 };
 
-export default Contact
+export default React.memo(Contact);

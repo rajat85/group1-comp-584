@@ -63,7 +63,7 @@ const TheHeader = (props) => {
         <CHeaderNav className="px-3">
           <CHeaderNavItem className="px-3">
             <div className="d-inline">Welcome</div>
-            <CHeaderNavLink className="d-inline" to={"/profile"}>{currentUser.username}</CHeaderNavLink>
+            <CHeaderNavLink className="d-inline" to={"/profile"}>{currentUser.username.toUpperCase()}!</CHeaderNavLink>
           </CHeaderNavItem>
           <CHeaderNavItem className="px-3">
             <CHeaderNavLink onClick={logOut} to="/logout">Logout</CHeaderNavLink>

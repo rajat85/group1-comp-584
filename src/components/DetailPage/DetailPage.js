@@ -1,5 +1,5 @@
 import { CContainer, CCol, CRow, CCard, CCardHeader, CCardBody, CListGroup, CListGroupItem } from "@coreui/react";
-import React, { useEffect, useState, useSelector, useDispatch } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -96,7 +96,7 @@ const DetailPage = function (props) {
                 "clickable": true
             }} className="mySwiper">
                 {images.map((image, index) => {
-                    return <SwiperSlide key={`swiper-${index}`}><img src={image} /></SwiperSlide>;
+                    return <SwiperSlide key={`swiper-${index}`}><img src={image} alt='' /></SwiperSlide>;
                 })}
             </Swiper>
             <CContainer>
@@ -169,13 +169,13 @@ const DetailPage = function (props) {
                         <CRow>
                             <CCol><p className="camp_text">Details</p></CCol>
                             <CCol>
-                                <CRow><p className="camp_text">Address:</p>{campDetail["addresses"].length != 0 ? campDetail["addresses"][0]["line1"] : 'No Information'}</CRow>
-                                <CRow><p className="camp_text">City:</p>{campDetail["addresses"].length != 0 ? campDetail["addresses"][0]["city"] : 'No Information'}</CRow>
-                                <CRow><p className="camp_text">State:</p>{campDetail["addresses"].length != 0 ? campDetail["addresses"][0]["stateCode"] : 'No Information'}</CRow>
+                                <CRow><p className="camp_text">Address:</p>{campDetail["addresses"].length !== 0 ? campDetail["addresses"][0]["line1"] : 'No Information'}</CRow>
+                                <CRow><p className="camp_text">City:</p>{campDetail["addresses"].length !== 0 ? campDetail["addresses"][0]["city"] : 'No Information'}</CRow>
+                                <CRow><p className="camp_text">State:</p>{campDetail["addresses"].length !== 0 ? campDetail["addresses"][0]["stateCode"] : 'No Information'}</CRow>
                             </CCol>
                             <CCol>
-                                <CRow><p className="camp_text">Phone Number:</p>{campDetail["contacts"]["phoneNumbers"].length != 0 ? campDetail["contacts"]["phoneNumbers"][0]["phoneNumber"] : 'No Information'}</CRow>
-                                <CRow><p className="camp_text">Email:</p>{campDetail["contacts"]["emailAddresses"].length != 0 ? campDetail["contacts"]["emailAddresses"][0]["emailAddress"] : 'No Information'}</CRow>
+                                <CRow><p className="camp_text">Phone Number:</p>{campDetail["contacts"]["phoneNumbers"].length !== 0 ? campDetail["contacts"]["phoneNumbers"][0]["phoneNumber"] : 'No Information'}</CRow>
+                                <CRow><p className="camp_text">Email:</p>{campDetail["contacts"]["emailAddresses"].length !== 0 ? campDetail["contacts"]["emailAddresses"][0]["emailAddress"] : 'No Information'}</CRow>
                                 <CRow><p className="camp_text">Accepts bookings:</p>3 months out</CRow>
                             </CCol>
                         </CRow>

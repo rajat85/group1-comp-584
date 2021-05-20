@@ -6,7 +6,7 @@ import Dexie from 'dexie';
 import _ from 'lodash';
 import { Card, Button } from "react-bootstrap";
 import { CContainer, CRow, CCol } from "@coreui/react";
-import { Input, Space } from "antd";
+import { Input } from "antd";
 import 'antd/dist/antd.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashcard.css";
@@ -95,7 +95,7 @@ const Dashboard = function (props) {
     return (
       <CContainer>
         <CRow className={"justify-content-center"}>
-          <CCol md={8}>
+          <CCol md={9}>
             <Card>
               <Card.Body>
                 <div className="input-group">
@@ -103,7 +103,7 @@ const Dashboard = function (props) {
                     placeholder="input search text"
                     allowClear
                     enterButton="Search"
-                    size="medium"
+                    size="large"
                     id={'search'}
                     onSearch={() => handleSearch(document.getElementById('search'))}
                   />
@@ -133,7 +133,7 @@ const Dashboard = function (props) {
                   <Card.Title className="bottomText">{campDetail.fees.split('.')[0]}$</Card.Title>
                 </CCol>
                 <CCol md={5}>
-                  <Button variant="link" className="btnShowDetail" onClick={() => handleClick(campDetail.id, campDetail.parkCode)}>Show Details</Button>
+                  <Button variant="link" className="btnShowDetail" onClick={() => handleClick(campDetail.id, campDetail.parkCode)}>Details</Button>
                 </CCol>
               </CRow>
             </Card>
