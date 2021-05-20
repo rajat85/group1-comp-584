@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { DatePicker } from "antd";
-
+import { DatePicker, Input, Space } from "antd";
 import './Datepicker.css';
 import "antd/dist/antd.css"
 
 const { RangePicker } = DatePicker;
+const { Search } = Input;
 
 class Datepicker extends Component {
     constructor(props) {
